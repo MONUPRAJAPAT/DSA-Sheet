@@ -1,5 +1,13 @@
 name: Deploy to AWS
 
+# Continuous deployment: every commit on main that passes CI is deployed to AWS.
+# Enable it once in repo → Settings → Secrets and variables → Actions:
+#   variable DEPLOY_ENABLED = true, plus ONE of:
+#   (a) secret AWS_DEPLOY_ROLE_ARN                          — OIDC role from infra/aws/github-oidc.yml (preferred)
+#   (b) secrets AWS_ACCESS_KEY_ID + AWS_SECRET_ACCESS_KEY  — least-privilege deploy user, for accounts where an
+#       organisation policy blocks OIDC providers (e.g. the AWS "new experience")
+# Until then the job is skipped (grey), never failed.
+
 on:
   workflow_run:
     workflows: [CI]
@@ -17,16 +25,31 @@ concurrency:
 
 jobs:
   deploy:
-    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
-    runs-on: ubuntu-latest
+    if: ${{ vars.DEPLOY_ENABLED == 'true' && (github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success') }}
+    # Native ARM runner: the lite stack runs on Graviton (arm64), so the image builds without emulation.
+    runs-on: ubuntu-24.04-arm
     environment: production
+    env:
+      HAS_ROLE: ${{ secrets.AWS_DEPLOY_ROLE_ARN != '' }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Deploy exactly the commit that passed CI.
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
       - uses: actions/setup-node@v4
         with: { node-version: 22, cache: npm }
-      - uses: aws-actions/configure-aws-credentials@v4
+      - name: AWS credentials (OIDC role)
+        if: env.HAS_ROLE == 'true'
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: ap-southeast-2
+      - name: AWS credentials (deploy user)
+        if: env.HAS_ROLE != 'true'
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-southeast-2
       - run: ./infra/aws/deploy.sh deploy
         env:

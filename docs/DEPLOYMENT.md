@@ -87,10 +87,14 @@ Re-running `./infra/aws/deploy.sh` performs a **zero-downtime rolling deploy**:
 | [`deploy.yml`](../.github/workflows/deploy.yml) | CI green on `main` | Assumes an AWS role via **OIDC** (no long-lived keys in GitHub) and runs `deploy.sh`                                     |
 | [`links.yml`](../.github/workflows/links.yml)   | Weekly             | Re-validates all 717 content links against YouTube / LeetCode / Codeforces / article sites                               |
 
-To enable auto-deploy:
+Until it is enabled, the deploy job is **skipped**, never failed. To enable auto-deploy, set the repository variable `DEPLOY_ENABLED=true` and give GitHub one of these credentials:
 
-1. Create an IAM role trusted by `token.actions.githubusercontent.com` for this repository.
-2. Save its ARN as the `AWS_DEPLOY_ROLE_ARN` secret in a GitHub environment named `production`.
+| Option                    | How                                                                                                                                                  | When                                                                                                                                                              |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **OIDC role** (preferred) | Deploy [`infra/aws/github-oidc.yml`](../infra/aws/github-oidc.yml) and save its `DeployRoleArn` output as the `AWS_DEPLOY_ROLE_ARN` secret           | Standard AWS accounts. Short-lived credentials; only the `production` environment of this repo can assume the role.                                               |
+| **Deploy user**           | An IAM user with the same least-privilege permissions; save its key as `AWS_ACCESS_KEY_ID` + `AWS_SECRET_ACCESS_KEY` secrets and rotate it regularly | Accounts where an organisation policy denies `iam:CreateOpenIDConnectProvider`. This includes the AWS _new experience_, which is what the live demo account uses. |
+
+Either way, the role or user gets `PowerUserAccess` plus IAM rights limited to `dsa-sheet-*` roles, so it can deploy this app but cannot touch other identities.
 
 ## Custom domain (optional)
 
