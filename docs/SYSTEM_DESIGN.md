@@ -176,7 +176,7 @@ sequenceDiagram
 
     Note over B,API: Access token expired → silent refresh
     B->>API: GET /progress → 401 TOKEN_EXPIRED
-    B->>API: POST /auth/refresh (cookie sent automatically; single-flight on the client)
+    B->>API: POST /auth/refresh (cookie sent automatically, single-flight on the client)
     API->>DB: findOneAndDelete({ tokenHash }) (rotation, so the old token is consumed)
     API->>DB: insert new session
     API-->>B: new accessToken + new cookie
@@ -223,7 +223,7 @@ sequenceDiagram
         API->>DB: insert 4 revision events at +1, +3, +7, +21 days (user-local dates)
     end
     API-->>UI: 200 canonical row
-    UI->>UI: reconcile cache; refetch stats / heatmap / calendar in the background
+    UI->>UI: reconcile cache, refetch stats / heatmap / calendar in the background
     alt request fails
         UI->>UI: roll back to the previous state + error toast
     end
@@ -329,36 +329,102 @@ Dates are stored as **user-local `YYYY-MM-DD` keys** (the client sends `X-Timezo
 
 ---
 
-## 8. Security summary
+## 8. Deployment
 
-| Threat                            | Control                                                                                                    |
-| --------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| Credential stuffing / brute force | Failed-attempt limit per IP + email, bcrypt cost 12, generic errors with constant timing                   |
-| XSS token theft                   | Refresh token in an httpOnly cookie; access token in memory, 15 min; strict CSP via helmet; React escaping |
-| CSRF                              | `SameSite=Strict` path-scoped cookie; data APIs require the Bearer header                                  |
-| Injection / malformed input       | Zod validation on every input; Mongoose strict schemas and `strictQuery`; ObjectId validation              |
-| Broken access control             | Every query scoped by the token's `userId`; other users' resources return 404                              |
-| Secrets exposure                  | SSM SecureString injected at runtime; `.env` git-ignored; env validated at boot                            |
-| Direct origin access              | ALB accepts only CloudFront IP ranges carrying the secret origin header; S3 is private (OAC)               |
-| Transport                         | HTTPS everywhere (CloudFront redirect + HSTS); TLS to Atlas                                                |
+The application is deployed on AWS and live at **https://dd2dekdh8uhzz.cloudfront.net**. The repository contains two deployment profiles that share the same Docker image, secrets layout and CloudFront routing:
+
+| Profile              | Template                   | Architecture                                                                       | Monthly cost     | Purpose                                              |
+| -------------------- | -------------------------- | ---------------------------------------------------------------------------------- | ---------------- | ---------------------------------------------------- |
+| **Lite (live demo)** | `infra/aws/stack-lite.yml` | CloudFront → S3 (SPA) and → one Graviton EC2 (t4g.micro) running the API container | ≈ $12            | The live link, inside the AWS Free plan credits      |
+| **Production**       | `infra/aws/stack.yml`      | CloudFront → S3 and → ALB → ECS Fargate (2–6 tasks, 2 AZs)                         | ≈ $82 at 2 tasks | The 10k–50k-student design described in sections 2–7 |
+
+Prices come from the AWS Pricing API for the account's Region.
+
+### 8.1 Live deployment (as running today)
+
+```mermaid
+flowchart LR
+    U["Student browser"] -- "HTTPS" --> CF["CloudFront<br/>edge locations incl. India<br/>HTTP/2 + HTTP/3 · security headers"]
+    CF -- "/* (static)" --> S3[("S3 bucket<br/>private · Origin Access Control")]
+    CF -- "/api/* + secret X-Origin-Verify header" --> EC2
+    subgraph AWS["AWS · ap-southeast-2 (Sydney)"]
+        S3
+        subgraph VPC["VPC · security group: CloudFront origin IP ranges only, port 80"]
+            EC2["EC2 t4g.micro (Graviton, Amazon Linux 2023)<br/>Docker: Node 22 + Express API<br/>restart=always · IMDSv2 · no SSH"]
+        end
+        SSM["SSM Parameter Store<br/>MONGODB_URI · JWT secret · origin secret · image URI"]
+        ECR["ECR<br/>private image registry"]
+        CW["CloudWatch Logs<br/>/dsa-sheet/api"]
+    end
+    EC2 -- "TLS" --> DB[("MongoDB Atlas M0<br/>AWS ap-southeast-2")]
+    SSM -. "read at container start (instance role)" .-> EC2
+    ECR -. "image pull (instance role)" .-> EC2
+    EC2 -. "awslogs driver" .-> CW
+```
+
+| Concern           | How it is handled                                                                                                                                                                                                                       |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Single origin     | One CloudFront distribution serves both the React app and `/api/*`, so cookies stay first-party (`SameSite=Strict`) and there is no CORS                                                                                                |
+| Origin protection | The instance's security group admits only CloudFront's managed prefix list, and the API rejects any request without the secret `X-Origin-Verify` header (403). Verified by calling the server's IP directly: the connection is refused. |
+| Secrets           | Stored as SSM SecureStrings and read by the instance role when the container starts. Nothing secret is in the image, the repository or the user data.                                                                                   |
+| Access            | No SSH port and no key pair. Administration and rollouts go through SSM Run Command.                                                                                                                                                    |
+| Region            | The AWS account is on the _new AWS experience_, which pins it to Sydney. Static content still comes from CloudFront edges in India, and API calls take about 0.3–0.6 s round trip. The production design targets Mumbai.                |
+
+### 8.2 Release pipeline
+
+```mermaid
+%% layout: wide
+flowchart TB
+    subgraph CI["Continuous integration · GitHub Actions · every push and pull request"]
+        direction LR
+        Dev["git push<br/>to main"] --> Checks["typecheck · 31 API tests<br/>client build · Docker build"] --> E2E["Playwright E2E<br/>against a real stack"]
+    end
+    subgraph CD["Continuous deployment · deploy.sh (GitHub Actions or a laptop)"]
+        direction LR
+        B["docker build arm64<br/>→ push to ECR<br/>(immutable tag)"] --> P["SSM:<br/>update IMAGE_URI"] --> CFN["CloudFormation<br/>stack-lite.yml<br/>(no-op if unchanged)"] --> R["SSM Run Command:<br/>pull image +<br/>restart container"] --> W["Upload SPA to S3<br/>+ CloudFront<br/>invalidation"] --> H["Smoke test<br/>GET /api/v1/health<br/>via CloudFront"]
+    end
+    CI -- "all green" --> CD
+```
+
+- **One command:** `AWS_PROFILE=dsa ./infra/aws/deploy.sh` runs the whole pipeline. The same script powers the GitHub Actions deploy job.
+- **CI runs on every push and pull request.** The first run on GitHub passed every job.
+- **Continuous deployment** is wired and switched on with a repository variable. The preferred OIDC role (`infra/aws/github-oidc.yml`) is blocked by this account's organisation policy, so the documented fallback is a least-privilege deploy user (see the deployment guide).
+- **Infrastructure as code:** every resource comes from a CloudFormation template validated with `cfn-lint`. `deploy.sh destroy` removes everything.
+- **Verified in production:**
+  - a rolling update pushed a new image and restarted the container with the site staying up
+  - the Playwright E2E suite passes against the live URL on desktop and mobile
+
+## 9. Security summary
+
+| Threat                            | Control                                                                                                                                                                                                 |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Credential stuffing / brute force | Failed-attempt limit per IP + email, bcrypt cost 12, generic errors with constant timing                                                                                                                |
+| XSS token theft                   | Refresh token in an httpOnly cookie; access token in memory, 15 min; strict CSP via helmet; React escaping                                                                                              |
+| CSRF                              | `SameSite=Strict` path-scoped cookie; data APIs require the Bearer header                                                                                                                               |
+| Injection / malformed input       | Zod validation on every input; Mongoose strict schemas and `strictQuery`; ObjectId validation                                                                                                           |
+| Broken access control             | Every query scoped by the token's `userId`; other users' resources return 404                                                                                                                           |
+| Secrets exposure                  | SSM SecureString injected at runtime; `.env` git-ignored; env validated at boot                                                                                                                         |
+| Direct origin access              | Only CloudFront's IP ranges can reach the origin, and the request must carry the secret origin header (checked by the ALB in production and by the API itself in the lite profile); S3 is private (OAC) |
+| Transport                         | HTTPS everywhere (CloudFront redirect + HSTS); TLS to Atlas                                                                                                                                             |
 
 ---
 
-## 9. Trade-offs (bonus)
+## 10. Trade-offs (bonus)
 
-| Decision                  | Chosen                                            | Alternative                                | Reasoning                                                                                                                                                                                                             |
-| ------------------------- | ------------------------------------------------- | ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Database                  | **MongoDB**                                       | PostgreSQL                                 | The content is naturally hierarchical documents (topic → resources), progress is a simple keyed upsert, and the brief asks for MERN. Postgres would also work; there are no multi-entity transactions on the hot path |
-| Progress model            | **One doc per (user, problem)**                   | Array inside the user document             | Avoids unbounded documents and write contention; indexed and idempotent ([ADR-002](./adr/002-progress-as-separate-collection.md))                                                                                     |
-| Auth                      | **JWT access + rotating refresh cookie**          | Server sessions only / JWT in localStorage | Stateless scaling _and_ revocation _and_ XSS safety ([ADR-003](./adr/003-auth-tokens.md))                                                                                                                             |
-| Stats                     | **Computed on read**                              | Counters maintained on write               | Always consistent, simpler; ~1 ms per user at this size. Revisit only if profiling demands it                                                                                                                         |
-| Topology                  | **Single origin via CloudFront** (`/api/*` → ALB) | Separate API domain + CORS                 | First-party cookies, no CORS preflights, one TLS certificate ([ADR-004](./adr/004-single-origin-cloudfront.md))                                                                                                       |
-| Compute                   | **ECS Fargate**                                   | EC2 + PM2 / Lambda                         | No servers to patch, autoscaling and rolling deploys built in. Lambda cold starts and connection pooling to MongoDB are awkward                                                                                       |
-| Calendar dates            | **User-local `YYYY-MM-DD` strings**               | UTC timestamps                             | Correct "today" for every timezone; trivial range queries ([ADR-005](./adr/005-local-date-keys.md))                                                                                                                   |
-| Monorepo + shared package | **npm workspaces**                                | Separate repos                             | One PR changes API + UI + types atomically; validation rules can't diverge                                                                                                                                            |
-| Content links             | **Fetched and verified from the platforms**       | Hand-typed URLs                            | Official titles and difficulty; no dead or mismatched videos; re-validated weekly in CI                                                                                                                               |
+| Decision                  | Chosen                                                   | Alternative                                | Reasoning                                                                                                                                                                                                             |
+| ------------------------- | -------------------------------------------------------- | ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Database                  | **MongoDB**                                              | PostgreSQL                                 | The content is naturally hierarchical documents (topic → resources), progress is a simple keyed upsert, and the brief asks for MERN. Postgres would also work; there are no multi-entity transactions on the hot path |
+| Progress model            | **One doc per (user, problem)**                          | Array inside the user document             | Avoids unbounded documents and write contention; indexed and idempotent ([ADR-002](./adr/002-progress-as-separate-collection.md))                                                                                     |
+| Auth                      | **JWT access + rotating refresh cookie**                 | Server sessions only / JWT in localStorage | Stateless scaling _and_ revocation _and_ XSS safety ([ADR-003](./adr/003-auth-tokens.md))                                                                                                                             |
+| Stats                     | **Computed on read**                                     | Counters maintained on write               | Always consistent, simpler; ~1 ms per user at this size. Revisit only if profiling demands it                                                                                                                         |
+| Topology                  | **Single origin via CloudFront** (`/api/*` → ALB)        | Separate API domain + CORS                 | First-party cookies, no CORS preflights, one TLS certificate ([ADR-004](./adr/004-single-origin-cloudfront.md))                                                                                                       |
+| Compute                   | **ECS Fargate**                                          | EC2 + PM2 / Lambda                         | No servers to patch, autoscaling and rolling deploys built in. Lambda cold starts and connection pooling to MongoDB are awkward                                                                                       |
+| Live demo hosting         | **Lite profile (single Graviton EC2 behind CloudFront)** | The production ALB + Fargate stack         | About $12 instead of $82 a month, so the demo runs for the whole Free plan period. Same image, secrets and routing; the production template stays in the repo for real scale.                                         |
+| Calendar dates            | **User-local `YYYY-MM-DD` strings**                      | UTC timestamps                             | Correct "today" for every timezone; trivial range queries ([ADR-005](./adr/005-local-date-keys.md))                                                                                                                   |
+| Monorepo + shared package | **npm workspaces**                                       | Separate repos                             | One PR changes API + UI + types atomically; validation rules can't diverge                                                                                                                                            |
+| Content links             | **Fetched and verified from the platforms**              | Hand-typed URLs                            | Official titles and difficulty; no dead or mismatched videos; re-validated weekly in CI                                                                                                                               |
 
-## 10. Future scalability improvements (bonus)
+## 11. Future scalability improvements (bonus)
 
 1. **Redis (ElastiCache)** for the shared rate-limit store and the sheet cache, plus a pub/sub cache-invalidation signal when admins edit content.
 2. **Read replicas** (`readPreference: secondaryPreferred`) for dashboard/heatmap aggregations if reads dominate.

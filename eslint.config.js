@@ -30,6 +30,10 @@ export default tseslint.config(
     languageOptions: { globals: globals.node },
   },
   {
+    files: ['docs/**/*.mjs'],
+    languageOptions: { globals: { ...globals.node, ...globals.browser, mermaid: 'readonly' } },
+  },
+  {
     files: ['loadtest/**/*.js'],
     languageOptions: { globals: { __ENV: 'readonly', __VU: 'readonly', __ITER: 'readonly' } },
   },
