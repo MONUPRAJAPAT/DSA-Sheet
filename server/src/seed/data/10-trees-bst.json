@@ -1,0 +1,367 @@
+{
+  "title": "Trees & BST",
+  "slug": "trees-bst",
+  "order": 10,
+  "description": "Traversals, recursion on trees and binary search tree properties.",
+  "icon": "network",
+  "topics": [
+    {
+      "title": "Tree Traversals",
+      "slug": "tree-traversals",
+      "difficulty": "Easy",
+      "description": "Pre/in/post-order DFS and level-order BFS.",
+      "resources": {
+        "youtube": "https://www.youtube.com/watch?v=jmy0LaGET1I",
+        "practice": {
+          "platform": "LeetCode",
+          "url": "https://leetcode.com/problem-list/binary-tree/"
+        },
+        "article": "https://www.geeksforgeeks.org/dsa/tree-traversals-inorder-preorder-and-postorder/"
+      },
+      "problems": [
+        {
+          "title": "Binary Tree Inorder Traversal",
+          "slug": "binary-tree-inorder-traversal",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=Z_NEgBgbRVI",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/binary-tree-inorder-traversal/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/94/"
+          },
+          "tags": ["stack", "tree", "depth-first-search", "binary-tree"]
+        },
+        {
+          "title": "Binary Tree Preorder Traversal",
+          "slug": "binary-tree-preorder-traversal",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=RlUu72JrOCQ",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/binary-tree-preorder-traversal/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/144/"
+          },
+          "tags": ["stack", "tree", "depth-first-search", "binary-tree"]
+        },
+        {
+          "title": "Binary Tree Postorder Traversal",
+          "slug": "binary-tree-postorder-traversal",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=NzIGLLwZBS8",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/binary-tree-postorder-traversal/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/145/"
+          },
+          "tags": ["stack", "tree", "depth-first-search", "binary-tree"]
+        },
+        {
+          "title": "Maximum Depth of Binary Tree",
+          "slug": "maximum-depth-of-binary-tree",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=eD3tmO66aBA",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/maximum-depth-of-binary-tree/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/104/"
+          },
+          "tags": ["tree", "depth-first-search", "breadth-first-search", "binary-tree"]
+        },
+        {
+          "title": "Binary Tree Level Order Traversal",
+          "slug": "binary-tree-level-order-traversal",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=EoAsWbO7sqg",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/binary-tree-level-order-traversal/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/102/"
+          },
+          "tags": ["tree", "breadth-first-search", "binary-tree"]
+        }
+      ]
+    },
+    {
+      "title": "Binary Tree Problems",
+      "slug": "binary-tree-problems",
+      "difficulty": "Medium",
+      "description": "Height, diameter, views, ancestors and construction.",
+      "resources": {
+        "youtube": "https://www.youtube.com/watch?v=Rezetez59Nk",
+        "practice": {
+          "platform": "LeetCode",
+          "url": "https://leetcode.com/problem-list/binary-tree/"
+        },
+        "article": "https://www.geeksforgeeks.org/dsa/binary-tree-data-structure/"
+      },
+      "problems": [
+        {
+          "title": "Invert Binary Tree",
+          "slug": "invert-binary-tree",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=OnSn2XEQ4MY",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/invert-binary-tree/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/226/"
+          },
+          "tags": ["tree", "depth-first-search", "breadth-first-search", "binary-tree"]
+        },
+        {
+          "title": "Same Tree",
+          "slug": "same-tree",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=vRbbcKXCxOw",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/same-tree/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/100/"
+          },
+          "tags": ["tree", "depth-first-search", "breadth-first-search", "binary-tree"]
+        },
+        {
+          "title": "Diameter of Binary Tree",
+          "slug": "diameter-of-binary-tree",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=Rezetez59Nk",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/diameter-of-binary-tree/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/543/"
+          },
+          "tags": ["tree", "depth-first-search", "binary-tree", "dp-on-trees"]
+        },
+        {
+          "title": "Balanced Binary Tree",
+          "slug": "balanced-binary-tree",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=Yt50Jfbd8Po",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/balanced-binary-tree/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/110/"
+          },
+          "tags": ["tree", "depth-first-search", "binary-tree"]
+        },
+        {
+          "title": "Binary Tree Right Side View",
+          "slug": "binary-tree-right-side-view",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=KV4mRzTjlAk",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/binary-tree-right-side-view/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/199/"
+          },
+          "tags": ["tree", "depth-first-search", "breadth-first-search", "binary-tree"]
+        },
+        {
+          "title": "Binary Tree Zigzag Level Order Traversal",
+          "slug": "binary-tree-zigzag-level-order-traversal",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=igbboQbiwqw",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/103/"
+          },
+          "tags": ["tree", "breadth-first-search", "binary-tree"]
+        },
+        {
+          "title": "Lowest Common Ancestor of a Binary Tree",
+          "slug": "lowest-common-ancestor-of-a-binary-tree",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=_-QHfMDde90",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/236/"
+          },
+          "tags": ["tree", "depth-first-search", "binary-tree", "binary-lifting"]
+        },
+        {
+          "title": "Construct Binary Tree from Preorder and Inorder Traversal",
+          "slug": "construct-binary-tree-from-preorder-and-inorder-traversal",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=aZNaLrVebKQ",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/105/"
+          },
+          "tags": ["array", "hash-table", "divide-and-conquer", "tree"]
+        }
+      ]
+    },
+    {
+      "title": "Binary Search Trees",
+      "slug": "binary-search-trees",
+      "difficulty": "Medium",
+      "description": "Use the BST ordering for search, insert and validation.",
+      "resources": {
+        "youtube": "https://www.youtube.com/watch?v=p7-9UvDQZ3w",
+        "practice": {
+          "platform": "LeetCode",
+          "url": "https://leetcode.com/problem-list/binary-search-tree/"
+        },
+        "article": "https://www.geeksforgeeks.org/dsa/binary-search-tree-data-structure/"
+      },
+      "problems": [
+        {
+          "title": "Search in a Binary Search Tree",
+          "slug": "search-in-a-binary-search-tree",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=KcNt6v_56cc",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/search-in-a-binary-search-tree/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/700/"
+          },
+          "tags": ["tree", "binary-search-tree", "binary-tree"]
+        },
+        {
+          "title": "Insert into a Binary Search Tree",
+          "slug": "insert-into-a-binary-search-tree",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=FiFiNvM29ps",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/insert-into-a-binary-search-tree/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/701/"
+          },
+          "tags": ["tree", "binary-search-tree", "binary-tree"]
+        },
+        {
+          "title": "Validate Binary Search Tree",
+          "slug": "validate-binary-search-tree",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=s6ATEkipzow",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/validate-binary-search-tree/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/98/"
+          },
+          "tags": ["tree", "depth-first-search", "binary-search-tree", "binary-tree"]
+        },
+        {
+          "title": "Kth Smallest Element in a BST",
+          "slug": "kth-smallest-element-in-a-bst",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=9TJYWh0adfk",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/kth-smallest-element-in-a-bst/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/230/"
+          },
+          "tags": ["tree", "depth-first-search", "binary-search-tree", "binary-tree"]
+        },
+        {
+          "title": "Lowest Common Ancestor of a Binary Search Tree",
+          "slug": "lowest-common-ancestor-of-a-binary-search-tree",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=gs2LMfuOR9k",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/235/"
+          },
+          "tags": ["tree", "depth-first-search", "binary-search-tree", "binary-tree"]
+        }
+      ]
+    },
+    {
+      "title": "Advanced Trees",
+      "slug": "advanced-trees",
+      "difficulty": "Hard",
+      "description": "Path sums, serialization and vertical ordering.",
+      "resources": {
+        "youtube": "https://www.youtube.com/watch?v=WszrfSwMz58",
+        "practice": {
+          "platform": "LeetCode",
+          "url": "https://leetcode.com/problem-list/tree/"
+        },
+        "article": "https://www.geeksforgeeks.org/dsa/find-maximum-path-sum-in-a-binary-tree/"
+      },
+      "problems": [
+        {
+          "title": "Vertical Order Traversal of a Binary Tree",
+          "slug": "vertical-order-traversal-of-a-binary-tree",
+          "difficulty": "Hard",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=q_a6lpbKJdw",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/987/"
+          },
+          "tags": ["hash-table", "tree", "depth-first-search", "breadth-first-search"]
+        },
+        {
+          "title": "Binary Tree Maximum Path Sum",
+          "slug": "binary-tree-maximum-path-sum",
+          "difficulty": "Hard",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=WszrfSwMz58",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/binary-tree-maximum-path-sum/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/124/"
+          },
+          "tags": ["dynamic-programming", "tree", "depth-first-search", "binary-tree"]
+        },
+        {
+          "title": "Serialize and Deserialize Binary Tree",
+          "slug": "serialize-and-deserialize-binary-tree",
+          "difficulty": "Hard",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=-YbXySKJsX8",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/serialize-and-deserialize-binary-tree/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/297/"
+          },
+          "tags": ["string", "tree", "depth-first-search", "breadth-first-search"]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,253 @@
+{
+  "title": "Recursion & Backtracking",
+  "slug": "recursion-backtracking",
+  "order": 6,
+  "description": "Think recursively, then explore choices and undo them.",
+  "icon": "git-branch",
+  "topics": [
+    {
+      "title": "Recursion Basics",
+      "slug": "recursion-basics",
+      "difficulty": "Easy",
+      "description": "Base cases, recursive calls and divide & conquer.",
+      "resources": {
+        "youtube": "https://www.youtube.com/watch?v=yVdKa8dnKiE",
+        "practice": {
+          "platform": "LeetCode",
+          "url": "https://leetcode.com/problem-list/recursion/"
+        },
+        "article": "https://www.geeksforgeeks.org/dsa/introduction-to-recursion-2/"
+      },
+      "problems": [
+        {
+          "title": "Fibonacci Number",
+          "slug": "fibonacci-number",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=dDokMfPpfu4",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/fibonacci-number/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/509/"
+          },
+          "tags": ["math", "dynamic-programming", "recursion", "memoization"]
+        },
+        {
+          "title": "Pow(x, n)",
+          "slug": "powx-n",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=l0YC3876qxg",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/powx-n/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/50/"
+          },
+          "tags": ["math", "recursion"]
+        },
+        {
+          "title": "K-th Symbol in Grammar",
+          "slug": "k-th-symbol-in-grammar",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=pmD2HCKaqRQ",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/k-th-symbol-in-grammar/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/779/"
+          },
+          "tags": ["math", "bit-manipulation", "recursion"]
+        },
+        {
+          "title": "Sort an Array",
+          "slug": "sort-an-array",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=MsYZSinhuFo",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/sort-an-array/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/912/"
+          },
+          "tags": ["array", "divide-and-conquer", "sorting", "heap-priority-queue"]
+        }
+      ]
+    },
+    {
+      "title": "Subsets & Combinations",
+      "slug": "subsets-combinations",
+      "difficulty": "Medium",
+      "description": "Pick / not-pick patterns to generate every possibility.",
+      "resources": {
+        "youtube": "https://www.youtube.com/watch?v=REOH22Xwdkk",
+        "practice": {
+          "platform": "LeetCode",
+          "url": "https://leetcode.com/problem-list/backtracking/"
+        },
+        "article": "https://www.geeksforgeeks.org/dsa/introduction-to-backtracking-2/"
+      },
+      "problems": [
+        {
+          "title": "Subsets",
+          "slug": "subsets",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=REOH22Xwdkk",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/subsets/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/78/"
+          },
+          "tags": ["array", "backtracking", "bit-manipulation"]
+        },
+        {
+          "title": "Subsets II",
+          "slug": "subsets-ii",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=RIn3gOkbhQE",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/subsets-ii/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/90/"
+          },
+          "tags": ["array", "backtracking", "bit-manipulation"]
+        },
+        {
+          "title": "Combination Sum",
+          "slug": "combination-sum",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=OyZFFqQtu98",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/combination-sum/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/39/"
+          },
+          "tags": ["array", "backtracking"]
+        },
+        {
+          "title": "Combination Sum II",
+          "slug": "combination-sum-ii",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=G1fRTGRxXU8",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/combination-sum-ii/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/40/"
+          },
+          "tags": ["array", "backtracking"]
+        },
+        {
+          "title": "Permutations",
+          "slug": "permutations",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=YK78FU5Ffjw",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/permutations/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/46/"
+          },
+          "tags": ["array", "backtracking"]
+        },
+        {
+          "title": "Letter Combinations of a Phone Number",
+          "slug": "letter-combinations-of-a-phone-number",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=0snEunUacZY",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/letter-combinations-of-a-phone-number/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/17/"
+          },
+          "tags": ["hash-table", "string", "backtracking"]
+        }
+      ]
+    },
+    {
+      "title": "Constraint Backtracking",
+      "slug": "constraint-backtracking",
+      "difficulty": "Hard",
+      "description": "Prune the search tree on boards and partitions.",
+      "resources": {
+        "youtube": "https://www.youtube.com/watch?v=i05Ju7AftcM",
+        "practice": {
+          "platform": "LeetCode",
+          "url": "https://leetcode.com/problem-list/backtracking/"
+        },
+        "article": "https://www.geeksforgeeks.org/dsa/n-queen-problem-backtracking-3/"
+      },
+      "problems": [
+        {
+          "title": "Word Search",
+          "slug": "word-search",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=pfiQ_PS1g8E",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/word-search/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/79/"
+          },
+          "tags": ["array", "string", "backtracking", "depth-first-search"]
+        },
+        {
+          "title": "Palindrome Partitioning",
+          "slug": "palindrome-partitioning",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=WBgsABoClE0",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/palindrome-partitioning/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/131/"
+          },
+          "tags": ["string", "dynamic-programming", "backtracking"]
+        },
+        {
+          "title": "N-Queens",
+          "slug": "n-queens",
+          "difficulty": "Hard",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=i05Ju7AftcM",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/n-queens/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/51/"
+          },
+          "tags": ["array", "backtracking", "algorithm-x"]
+        },
+        {
+          "title": "Sudoku Solver",
+          "slug": "sudoku-solver",
+          "difficulty": "Hard",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=70cP3qtJp-s",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/sudoku-solver/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/37/"
+          },
+          "tags": ["array", "hash-table", "backtracking", "matrix"]
+        }
+      ]
+    }
+  ]
+}

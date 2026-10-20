@@ -1,0 +1,308 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: >
+  DSA Sheet — cost-optimised "lite" stack for the live demo (fits inside the AWS Free plan credits).
+  CloudFront (single origin for the browser) → S3 (React SPA) and → one Graviton EC2 instance running the
+  API in Docker → MongoDB Atlas. The production-scale design (ALB + autoscaling Fargate) is stack.yml.
+
+Parameters:
+  AppName:
+    Type: String
+    Default: dsa-sheet
+  InstanceType:
+    Type: String
+    Default: t4g.micro
+    AllowedValues: [t4g.micro, t4g.small]
+  LatestAmiId:
+    Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
+    Default: /aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-arm64
+  ImageParam:
+    Type: String
+    Default: /dsa-sheet/IMAGE_URI
+    Description: SSM parameter holding the API image URI (deploy.sh updates it on every release)
+  MongoUriParam:
+    Type: String
+    Default: /dsa-sheet/MONGODB_URI
+  JwtSecretParam:
+    Type: String
+    Default: /dsa-sheet/JWT_ACCESS_SECRET
+  OriginVerifyParam:
+    Type: String
+    Default: /dsa-sheet/ORIGIN_VERIFY
+  OriginVerifySecret:
+    Type: String
+    NoEcho: true
+    MinLength: 24
+    Description: Same value as the ORIGIN_VERIFY parameter; CloudFront sends it to the API, which rejects requests without it
+  CloudFrontPrefixListId:
+    Type: String
+    Description: Managed prefix list "com.amazonaws.global.cloudfront.origin-facing" for this Region (deploy.sh looks it up)
+
+Resources:
+  # ------------------------------------------------------------------ network
+  Vpc:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.30.0.0/16
+      EnableDnsHostnames: true
+      EnableDnsSupport: true
+      Tags: [{ Key: Name, Value: !Sub '${AppName}-lite' }]
+  InternetGateway:
+    Type: AWS::EC2::InternetGateway
+  GatewayAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties: { VpcId: !Ref Vpc, InternetGatewayId: !Ref InternetGateway }
+  PublicSubnet:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref Vpc
+      CidrBlock: 10.30.0.0/24
+      AvailabilityZone: !Select [0, !GetAZs '']
+      Tags: [{ Key: Name, Value: !Sub '${AppName}-lite-public' }]
+  RouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties: { VpcId: !Ref Vpc }
+  DefaultRoute:
+    Type: AWS::EC2::Route
+    DependsOn: GatewayAttachment
+    Properties:
+      RouteTableId: !Ref RouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref InternetGateway
+  SubnetRoute:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties: { SubnetId: !Ref PublicSubnet, RouteTableId: !Ref RouteTable }
+
+  ApiSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: API - HTTP from CloudFront edge locations only (no SSH; admin access is via SSM)
+      VpcId: !Ref Vpc
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          SourcePrefixListId: !Ref CloudFrontPrefixListId
+
+  # ------------------------------------------------------------------ server
+  LogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub /${AppName}/api
+      RetentionInDays: 14
+
+  InstanceRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - { Effect: Allow, Principal: { Service: ec2.amazonaws.com }, Action: sts:AssumeRole }
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore # deploys + shell access via SSM, no SSH keys
+        - arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly # pull the API image
+      Policies:
+        - PolicyName: app-runtime
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action: [ssm:GetParameter, ssm:GetParameters]
+                Resource:
+                  - !Sub arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter${ImageParam}
+                  - !Sub arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter${MongoUriParam}
+                  - !Sub arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter${JwtSecretParam}
+                  - !Sub arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter${OriginVerifyParam}
+              - Effect: Allow
+                Action: [kms:Decrypt]
+                Resource: '*'
+                Condition:
+                  StringEquals: { kms:ViaService: !Sub 'ssm.${AWS::Region}.amazonaws.com' }
+              - Effect: Allow
+                Action: [logs:CreateLogStream, logs:PutLogEvents, logs:DescribeLogStreams]
+                Resource: !GetAtt LogGroup.Arn # ends in ':*' — covers every stream in the group
+  InstanceProfile:
+    Type: AWS::IAM::InstanceProfile
+    Properties:
+      Roles: [!Ref InstanceRole]
+
+  ApiInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: !Ref LatestAmiId
+      InstanceType: !Ref InstanceType
+      IamInstanceProfile: !Ref InstanceProfile
+      MetadataOptions: { HttpTokens: required, HttpEndpoint: enabled } # IMDSv2 only
+      NetworkInterfaces:
+        - DeviceIndex: '0'
+          SubnetId: !Ref PublicSubnet
+          GroupSet: [!Ref ApiSecurityGroup]
+          # Public IP from the first second so the boot script can install Docker; the Elastic IP below
+          # then replaces it (same price, but stable — CloudFront points at it).
+          AssociatePublicIpAddress: true
+      BlockDeviceMappings:
+        - DeviceName: /dev/xvda
+          Ebs: { VolumeSize: 8, VolumeType: gp3, Encrypted: true, DeleteOnTermination: true }
+      Tags: [{ Key: Name, Value: !Sub '${AppName}-api' }]
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash
+          set -euxo pipefail
+          # Retry: the network briefly changes when the Elastic IP is attached during first boot.
+          for i in $(seq 1 30); do dnf install -y docker && break; sleep 10; done
+          systemctl enable --now docker
+          # 1 GB swap so builds/pulls never OOM a 1 GB instance.
+          if [ ! -f /swapfile ]; then fallocate -l 1G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && echo '/swapfile none swap sw 0 0' >> /etc/fstab; fi
+          mkdir -p /opt/${AppName}
+          cat > /opt/${AppName}/run.sh <<'SCRIPT'
+          #!/bin/bash
+          # (Re)start the API container with the image + secrets currently in SSM. Called on first boot and by deploy.sh.
+          set -euo pipefail
+          REGION=${AWS::Region}
+          get() { aws ssm get-parameter --region "$REGION" --name "$1" --with-decryption --query Parameter.Value --output text; }
+          IMAGE=$(get ${ImageParam})
+          aws ecr get-login-password --region "$REGION" | docker login --username AWS --password-stdin "${!IMAGE%%/*}"
+          docker pull "$IMAGE"
+          docker rm -f api 2>/dev/null || true
+          docker run -d --name api --restart always -p 80:4000 \
+            -e NODE_ENV=production -e PORT=4000 -e TRUST_PROXY=1 -e LOG_LEVEL=info \
+            -e MONGODB_URI="$(get ${MongoUriParam})" \
+            -e JWT_ACCESS_SECRET="$(get ${JwtSecretParam})" \
+            -e ORIGIN_VERIFY_SECRET="$(get ${OriginVerifyParam})" \
+            --log-driver awslogs --log-opt awslogs-region="$REGION" --log-opt awslogs-group=/${AppName}/api --log-opt awslogs-create-group=false \
+            "$IMAGE"
+          docker image prune -af --filter "until=72h" || true
+          SCRIPT
+          chmod +x /opt/${AppName}/run.sh
+          for i in $(seq 1 20); do /opt/${AppName}/run.sh && break; sleep 15; done
+
+  ApiAddress:
+    Type: AWS::EC2::EIP
+    DependsOn: GatewayAttachment
+    Properties:
+      Domain: vpc
+      InstanceId: !Ref ApiInstance
+
+  # ------------------------------------------------------------------ static site + CDN
+  SiteBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          [{ ServerSideEncryptionByDefault: { SSEAlgorithm: AES256 } }]
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+  OriginAccessControl:
+    Type: AWS::CloudFront::OriginAccessControl
+    Properties:
+      OriginAccessControlConfig:
+        Name: !Sub ${AppName}-lite-oac
+        OriginAccessControlOriginType: s3
+        SigningBehavior: always
+        SigningProtocol: sigv4
+  SiteBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref SiteBucket
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal: { Service: cloudfront.amazonaws.com }
+            Action: s3:GetObject
+            Resource: !Sub ${SiteBucket.Arn}/*
+            Condition:
+              StringEquals:
+                {
+                  AWS:SourceArn: !Sub 'arn:aws:cloudfront::${AWS::AccountId}:distribution/${Distribution}',
+                }
+
+  SpaRewriteFunction:
+    Type: AWS::CloudFront::Function
+    Properties:
+      Name: !Sub ${AppName}-lite-spa-rewrite
+      AutoPublish: true
+      FunctionConfig:
+        { Comment: Serve index.html for client-side routes, Runtime: cloudfront-js-2.0 }
+      FunctionCode: |
+        function handler(event) {
+          var request = event.request;
+          if (request.uri.indexOf('.') === -1) request.uri = '/index.html';
+          return request;
+        }
+
+  ApiCachePolicy:
+    Type: AWS::CloudFront::CachePolicy
+    Properties:
+      CachePolicyConfig:
+        Name: !Sub ${AppName}-lite-api
+        MinTTL: 0
+        DefaultTTL: 0
+        MaxTTL: 300
+        ParametersInCacheKeyAndForwardedToOrigin:
+          EnableAcceptEncodingGzip: true
+          EnableAcceptEncodingBrotli: true
+          HeadersConfig: { HeaderBehavior: whitelist, Headers: [Authorization] }
+          CookiesConfig: { CookieBehavior: none }
+          QueryStringsConfig: { QueryStringBehavior: all }
+
+  Distribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        Comment: !Sub ${AppName} lite (web + api)
+        HttpVersion: http2and3
+        PriceClass: PriceClass_200 # includes India edge locations
+        DefaultRootObject: index.html
+        Origins:
+          - Id: site
+            DomainName: !GetAtt SiteBucket.RegionalDomainName
+            OriginAccessControlId: !GetAtt OriginAccessControl.Id
+            S3OriginConfig: { OriginAccessIdentity: '' }
+          - Id: api
+            # Public DNS name of the Elastic IP, e.g. ec2-1-2-3-4.ap-southeast-2.compute.amazonaws.com
+            DomainName: !Sub
+              - 'ec2-${Dashed}.${AWS::Region}.compute.amazonaws.com'
+              - Dashed: !Join ['-', !Split ['.', !Ref ApiAddress]]
+            CustomOriginConfig:
+              { OriginProtocolPolicy: http-only, HTTPPort: 80, OriginReadTimeout: 30 }
+            OriginCustomHeaders:
+              - { HeaderName: X-Origin-Verify, HeaderValue: !Ref OriginVerifySecret }
+        DefaultCacheBehavior:
+          TargetOriginId: site
+          ViewerProtocolPolicy: redirect-to-https
+          Compress: true
+          CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6 # Managed-CachingOptimized
+          ResponseHeadersPolicyId: 67f7725c-6f97-4210-82d7-5512b31e9d03 # Managed-SecurityHeadersPolicy
+          FunctionAssociations:
+            - {
+                EventType: viewer-request,
+                FunctionARN: !GetAtt SpaRewriteFunction.FunctionMetadata.FunctionARN,
+              }
+        CacheBehaviors:
+          - PathPattern: /api/*
+            TargetOriginId: api
+            ViewerProtocolPolicy: redirect-to-https
+            Compress: true
+            AllowedMethods: [GET, HEAD, OPTIONS, PUT, PATCH, POST, DELETE]
+            CachedMethods: [GET, HEAD]
+            CachePolicyId: !Ref ApiCachePolicy
+            OriginRequestPolicyId: b689b0a8-53d0-40ab-baf2-68738e2966ac # Managed-AllViewerExceptHostHeader
+
+Outputs:
+  AppUrl:
+    Description: Public URL of the application
+    Value: !Sub https://${Distribution.DomainName}
+  DistributionId:
+    Value: !Ref Distribution
+  SiteBucketName:
+    Value: !Ref SiteBucket
+  InstanceId:
+    Value: !Ref ApiInstance
+  ApiPublicIp:
+    Value: !Ref ApiAddress
+  LogGroupName:
+    Value: !Ref LogGroup

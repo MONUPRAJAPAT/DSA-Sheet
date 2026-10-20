@@ -1,0 +1,252 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+/* ------------------------------------------------------------------ design tokens */
+:root {
+  --radius: 0.75rem;
+  --background: oklch(0.985 0.002 264);
+  --foreground: oklch(0.21 0.02 264);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.21 0.02 264);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.21 0.02 264);
+  --primary: oklch(0.511 0.23 277);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.965 0.005 264);
+  --secondary-foreground: oklch(0.25 0.02 264);
+  --muted: oklch(0.965 0.005 264);
+  --muted-foreground: oklch(0.52 0.02 264);
+  --accent: oklch(0.955 0.02 277);
+  --accent-foreground: oklch(0.38 0.17 277);
+  --destructive: oklch(0.577 0.215 27);
+  --border: oklch(0.92 0.006 264);
+  --input: oklch(0.9 0.008 264);
+  --ring: oklch(0.511 0.23 277);
+  --sidebar: oklch(0.975 0.004 264);
+
+  --easy: oklch(0.6 0.15 160);
+  --easy-soft: oklch(0.96 0.04 160);
+  --medium: oklch(0.68 0.16 70);
+  --medium-soft: oklch(0.96 0.05 85);
+  --hard: oklch(0.6 0.2 15);
+  --hard-soft: oklch(0.96 0.03 15);
+
+  --study: oklch(0.511 0.23 277);
+  --revision: oklch(0.62 0.16 300);
+  --contest: oklch(0.66 0.16 50);
+  --custom: oklch(0.6 0.12 220);
+}
+
+.dark {
+  --background: oklch(0.155 0.012 264);
+  --foreground: oklch(0.96 0.005 264);
+  --card: oklch(0.19 0.014 264);
+  --card-foreground: oklch(0.96 0.005 264);
+  --popover: oklch(0.2 0.014 264);
+  --popover-foreground: oklch(0.96 0.005 264);
+  --primary: oklch(0.65 0.19 277);
+  --primary-foreground: oklch(0.15 0.02 277);
+  --secondary: oklch(0.25 0.014 264);
+  --secondary-foreground: oklch(0.96 0.005 264);
+  --muted: oklch(0.24 0.014 264);
+  --muted-foreground: oklch(0.7 0.015 264);
+  --accent: oklch(0.27 0.05 277);
+  --accent-foreground: oklch(0.88 0.08 277);
+  --destructive: oklch(0.65 0.2 25);
+  --border: oklch(0.28 0.014 264);
+  --input: oklch(0.32 0.014 264);
+  --ring: oklch(0.65 0.19 277);
+  --sidebar: oklch(0.17 0.013 264);
+
+  --easy: oklch(0.72 0.15 160);
+  --easy-soft: oklch(0.3 0.06 160);
+  --medium: oklch(0.8 0.15 80);
+  --medium-soft: oklch(0.32 0.06 80);
+  --hard: oklch(0.7 0.18 15);
+  --hard-soft: oklch(0.3 0.07 15);
+
+  --study: oklch(0.65 0.19 277);
+  --revision: oklch(0.7 0.15 300);
+  --contest: oklch(0.75 0.14 55);
+  --custom: oklch(0.7 0.11 220);
+}
+
+@theme inline {
+  --font-sans: 'Geist', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, monospace;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-easy: var(--easy);
+  --color-easy-soft: var(--easy-soft);
+  --color-medium: var(--medium);
+  --color-medium-soft: var(--medium-soft);
+  --color-hard: var(--hard);
+  --color-hard-soft: var(--hard-soft);
+  --color-study: var(--study);
+  --color-revision: var(--revision);
+  --color-contest: var(--contest);
+  --color-custom: var(--custom);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+  ::selection {
+    background: color-mix(in oklch, var(--primary) 25%, transparent);
+  }
+}
+
+@utility scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+/* ------------------------------------------------------------------ FullCalendar theme */
+.fc {
+  --fc-border-color: var(--border);
+  --fc-page-bg-color: var(--card);
+  --fc-neutral-bg-color: var(--muted);
+  --fc-today-bg-color: color-mix(in oklch, var(--primary) 7%, transparent);
+  --fc-highlight-color: color-mix(in oklch, var(--primary) 14%, transparent);
+  --fc-event-border-color: transparent;
+  --fc-now-indicator-color: var(--hard);
+  --fc-list-event-hover-bg-color: var(--muted);
+  font-size: 0.8125rem;
+}
+.fc .fc-scrollgrid,
+.fc .fc-list {
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.fc .fc-col-header-cell-cushion {
+  padding: 0.6rem 0.25rem;
+  font-weight: 600;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+.fc .fc-daygrid-day-number {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.4rem 0.5rem;
+  color: var(--muted-foreground);
+}
+.fc .fc-day-today .fc-daygrid-day-number {
+  background: var(--primary);
+  color: var(--primary-foreground);
+  border-radius: 999px;
+  min-width: 1.6rem;
+  text-align: center;
+  margin: 0.25rem;
+  padding: 0.15rem 0.4rem;
+}
+.fc .fc-daygrid-event,
+.fc .fc-timegrid-event {
+  border-radius: 6px;
+  padding: 0;
+  margin-top: 2px;
+  cursor: pointer;
+  background: transparent;
+  box-shadow: none;
+}
+.fc .fc-daygrid-event-harness {
+  margin: 0 4px;
+}
+.fc .fc-daygrid-more-link {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--primary);
+  padding: 0 6px;
+}
+.fc .fc-popover {
+  background: var(--popover);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 30px -10px rgb(0 0 0 / 0.25);
+  overflow: hidden;
+}
+.fc .fc-popover-header {
+  background: var(--muted);
+  padding: 0.5rem 0.75rem;
+  font-weight: 600;
+}
+.fc .fc-timegrid-slot-label-cushion,
+.fc .fc-timegrid-axis-cushion {
+  font-size: 0.7rem;
+  color: var(--muted-foreground);
+}
+.fc .fc-list-day-cushion {
+  background: var(--muted);
+}
+.fc-theme-standard td,
+.fc-theme-standard th {
+  border-color: var(--border);
+}
+.fc .fc-day-other .fc-daygrid-day-top {
+  opacity: 0.45;
+}
+.fc-event-dragging {
+  opacity: 0.85;
+}
+
+/* List (agenda) view: times live inside the event content, so the time column is hidden. */
+.fc .fc-list-event-time,
+.fc .fc-list-event-graphic {
+  display: none;
+}
+.fc .fc-list-event td {
+  padding: 0.65rem 0.9rem;
+}
+.fc .fc-list-event:hover td {
+  background: var(--muted);
+}
+.fc .fc-list-day-cushion {
+  padding: 0.5rem 0.9rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.fc .fc-list-empty {
+  background: transparent;
+  color: var(--muted-foreground);
+}
+/* Let long titles truncate inside the table instead of widening it. */
+.fc .fc-list-event-title {
+  width: 100%;
+  max-width: 0;
+  overflow: hidden;
+}
+.fc .fc-list-day-side-text {
+  font-weight: 500;
+  color: var(--muted-foreground);
+}

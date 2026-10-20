@@ -1,0 +1,267 @@
+{
+  "title": "Binary Search",
+  "slug": "binary-search",
+  "order": 5,
+  "description": "Halve the search space — on arrays and on the answer itself.",
+  "icon": "search",
+  "topics": [
+    {
+      "title": "Binary Search Basics",
+      "slug": "binary-search-basics",
+      "difficulty": "Easy",
+      "description": "Iterative binary search, bounds and off-by-one safety.",
+      "resources": {
+        "youtube": "https://www.youtube.com/watch?v=MHf6awe89xw",
+        "practice": {
+          "platform": "LeetCode",
+          "url": "https://leetcode.com/problem-list/binary-search/"
+        },
+        "article": "https://www.geeksforgeeks.org/dsa/binary-search/"
+      },
+      "problems": [
+        {
+          "title": "Binary Search",
+          "slug": "binary-search",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=s4DPM8ct1pI",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/binary-search/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/704/"
+          },
+          "tags": ["array", "binary-search"]
+        },
+        {
+          "title": "Search Insert Position",
+          "slug": "search-insert-position",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=6zhGS79oQ4k",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/search-insert-position/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/35/"
+          },
+          "tags": ["array", "binary-search"]
+        },
+        {
+          "title": "First Bad Version",
+          "slug": "first-bad-version",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=vnfGi-ucwTE",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/first-bad-version/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/278/"
+          },
+          "tags": ["binary-search", "interactive"]
+        },
+        {
+          "title": "Sqrt(x)",
+          "slug": "sqrtx",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=zdMhGxRWutQ",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/sqrtx/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/69/"
+          },
+          "tags": ["math", "binary-search", "newtons-method"]
+        },
+        {
+          "title": "Find First and Last Position of Element in Sorted Array",
+          "slug": "find-first-and-last-position-of-element-in-sorted-array",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=4sQL7R5ySUU",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/34/"
+          },
+          "tags": ["array", "binary-search"]
+        }
+      ]
+    },
+    {
+      "title": "Binary Search on Arrays",
+      "slug": "binary-search-arrays",
+      "difficulty": "Medium",
+      "description": "Rotated arrays, peaks and 2D matrices.",
+      "resources": {
+        "youtube": "https://www.youtube.com/watch?v=5qGrJbHhqFs",
+        "practice": {
+          "platform": "LeetCode",
+          "url": "https://leetcode.com/problem-list/binary-search/"
+        },
+        "article": "https://www.geeksforgeeks.org/dsa/search-an-element-in-a-sorted-and-pivoted-array/"
+      },
+      "problems": [
+        {
+          "title": "Search in Rotated Sorted Array",
+          "slug": "search-in-rotated-sorted-array",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=5qGrJbHhqFs",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/search-in-rotated-sorted-array/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/33/"
+          },
+          "tags": ["array", "binary-search"]
+        },
+        {
+          "title": "Find Minimum in Rotated Sorted Array",
+          "slug": "find-minimum-in-rotated-sorted-array",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=nhEMDKMB44g",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/153/"
+          },
+          "tags": ["array", "binary-search"]
+        },
+        {
+          "title": "Find Peak Element",
+          "slug": "find-peak-element",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=cXxmbemS6XM",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/find-peak-element/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/162/"
+          },
+          "tags": ["array", "binary-search"]
+        },
+        {
+          "title": "Single Element in a Sorted Array",
+          "slug": "single-element-in-a-sorted-array",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=AZOmHuHadxQ",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/single-element-in-a-sorted-array/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/540/"
+          },
+          "tags": ["array", "binary-search"]
+        },
+        {
+          "title": "Search a 2D Matrix",
+          "slug": "search-a-2d-matrix",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=JXU4Akft7yk",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/search-a-2d-matrix/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/74/"
+          },
+          "tags": ["array", "binary-search", "matrix"]
+        }
+      ]
+    },
+    {
+      "title": "Binary Search on Answer",
+      "slug": "binary-search-on-answer",
+      "difficulty": "Hard",
+      "description": "Search over the answer space with a monotonic feasibility check.",
+      "resources": {
+        "youtube": "https://www.youtube.com/watch?v=qyfekrNni90",
+        "practice": {
+          "platform": "LeetCode",
+          "url": "https://leetcode.com/problem-list/binary-search/"
+        },
+        "article": "https://cp-algorithms.com/num_methods/binary_search.html"
+      },
+      "problems": [
+        {
+          "title": "Koko Eating Bananas",
+          "slug": "koko-eating-bananas",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=qyfekrNni90",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/koko-eating-bananas/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/875/"
+          },
+          "tags": ["array", "binary-search"]
+        },
+        {
+          "title": "Capacity To Ship Packages Within D Days",
+          "slug": "capacity-to-ship-packages-within-d-days",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=MG-Ac4TAvTY",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/1011/"
+          },
+          "tags": ["array", "binary-search"]
+        },
+        {
+          "title": "Maximum Median (CF 1201C)",
+          "slug": "cf-1201c-maximum-median",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=bEwdpOiM4sc",
+            "practice": {
+              "platform": "Codeforces",
+              "url": "https://codeforces.com/problemset/problem/1201/C"
+            },
+            "article": "https://cp-algorithms.com/num_methods/binary_search.html"
+          },
+          "tags": ["binary-search", "greedy", "math", "sortings"]
+        },
+        {
+          "title": "Split Array Largest Sum",
+          "slug": "split-array-largest-sum",
+          "difficulty": "Hard",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=thUd_WJn6wk",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/split-array-largest-sum/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/410/"
+          },
+          "tags": ["array", "binary-search", "dynamic-programming", "greedy"]
+        },
+        {
+          "title": "Median of Two Sorted Arrays",
+          "slug": "median-of-two-sorted-arrays",
+          "difficulty": "Hard",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=F9c7LpRZWVQ",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/median-of-two-sorted-arrays/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/4/"
+          },
+          "tags": ["array", "binary-search", "divide-and-conquer"]
+        }
+      ]
+    }
+  ]
+}

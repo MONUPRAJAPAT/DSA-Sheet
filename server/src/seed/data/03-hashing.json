@@ -1,0 +1,195 @@
+{
+  "title": "Hashing",
+  "slug": "hashing",
+  "order": 3,
+  "description": "Hash maps and sets for O(1) lookups, counting and grouping.",
+  "icon": "hash",
+  "topics": [
+    {
+      "title": "Hash Map & Set Basics",
+      "slug": "hashmap-basics",
+      "difficulty": "Easy",
+      "description": "Trade memory for speed with constant-time lookups.",
+      "resources": {
+        "youtube": "https://www.youtube.com/watch?v=KEs5UyBJ39g",
+        "practice": {
+          "platform": "LeetCode",
+          "url": "https://leetcode.com/problem-list/hash-table/"
+        },
+        "article": "https://www.geeksforgeeks.org/dsa/introduction-to-hashing-2/"
+      },
+      "problems": [
+        {
+          "title": "Two Sum",
+          "slug": "two-sum",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=KLlXCFG5TnA",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/two-sum/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/1/"
+          },
+          "tags": ["array", "hash-table"]
+        },
+        {
+          "title": "Contains Duplicate",
+          "slug": "contains-duplicate",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=3OamzN90kPg",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/contains-duplicate/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/217/"
+          },
+          "tags": ["array", "hash-table", "sorting"]
+        },
+        {
+          "title": "Valid Anagram",
+          "slug": "valid-anagram",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=9UtInBqnCgA",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/valid-anagram/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/242/"
+          },
+          "tags": ["hash-table", "string", "sorting"]
+        },
+        {
+          "title": "Intersection of Two Arrays",
+          "slug": "intersection-of-two-arrays",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=fwUTXaMom6U",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/intersection-of-two-arrays/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/349/"
+          },
+          "tags": ["array", "hash-table", "two-pointers", "binary-search"]
+        },
+        {
+          "title": "Ransom Note",
+          "slug": "ransom-note",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=i3bvxJyUB40",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/ransom-note/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/383/"
+          },
+          "tags": ["hash-table", "string", "counting"]
+        },
+        {
+          "title": "Registration System (CF 4C)",
+          "slug": "cf-4c-registration-system",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=98SPJJoGKW0",
+            "practice": {
+              "platform": "Codeforces",
+              "url": "https://codeforces.com/problemset/problem/4/C"
+            },
+            "article": "https://www.geeksforgeeks.org/dsa/introduction-to-hashing-2/"
+          },
+          "tags": ["data-structures", "hashing", "implementation"]
+        }
+      ]
+    },
+    {
+      "title": "Frequency Counting",
+      "slug": "frequency-counting",
+      "difficulty": "Medium",
+      "description": "Count, bucket and group elements by key.",
+      "resources": {
+        "youtube": "https://www.youtube.com/watch?v=YPTqKIgVk-k",
+        "practice": {
+          "platform": "LeetCode",
+          "url": "https://leetcode.com/problem-list/counting/"
+        },
+        "article": "https://www.geeksforgeeks.org/dsa/counting-frequencies-of-array-elements/"
+      },
+      "problems": [
+        {
+          "title": "Sort Characters By Frequency",
+          "slug": "sort-characters-by-frequency",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=OXdXc9HTrIg",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/sort-characters-by-frequency/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/451/"
+          },
+          "tags": ["hash-table", "string", "sorting", "heap-priority-queue"]
+        },
+        {
+          "title": "Group Anagrams",
+          "slug": "group-anagrams",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=vzdNOK2oB2E",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/group-anagrams/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/49/"
+          },
+          "tags": ["array", "hash-table", "string", "sorting"]
+        },
+        {
+          "title": "Top K Frequent Elements",
+          "slug": "top-k-frequent-elements",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=YPTqKIgVk-k",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/top-k-frequent-elements/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/347/"
+          },
+          "tags": ["array", "hash-table", "divide-and-conquer", "sorting"]
+        },
+        {
+          "title": "4Sum II",
+          "slug": "4sum-ii",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=gwcrPfwqCRw",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/4sum-ii/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/454/"
+          },
+          "tags": ["array", "hash-table"]
+        },
+        {
+          "title": "Longest Consecutive Sequence",
+          "slug": "longest-consecutive-sequence",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=oO5uLE7EUlM",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/longest-consecutive-sequence/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/128/"
+          },
+          "tags": ["array", "hash-table", "union-find"]
+        }
+      ]
+    }
+  ]
+}

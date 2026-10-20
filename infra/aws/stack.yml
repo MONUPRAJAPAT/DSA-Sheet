@@ -1,0 +1,384 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: >
+  DSA Sheet — production stack. CloudFront (single origin for the browser) → S3 (React SPA)
+  and → ALB → ECS Fargate (Node/Express API, autoscaled) → MongoDB Atlas.
+
+Parameters:
+  AppName:
+    Type: String
+    Default: dsa-sheet
+  ImageUri:
+    Type: String
+    Description: Full ECR image URI of the API, e.g. 123456789012.dkr.ecr.ap-south-1.amazonaws.com/dsa-sheet-api:abc123
+  MongoUriParam:
+    Type: String
+    Default: /dsa-sheet/MONGODB_URI
+    Description: SSM SecureString parameter name holding the MongoDB Atlas connection string
+  JwtSecretParam:
+    Type: String
+    Default: /dsa-sheet/JWT_ACCESS_SECRET
+    Description: SSM SecureString parameter name holding the JWT signing secret
+  OriginVerifySecret:
+    Type: String
+    NoEcho: true
+    MinLength: 24
+    Description: Random value CloudFront sends to the ALB; requests without it are rejected (ALB is not publicly usable)
+  CloudFrontPrefixListId:
+    Type: String
+    Description: Managed prefix list "com.amazonaws.global.cloudfront.origin-facing" for this region (deploy.sh looks it up)
+  DesiredCount:
+    Type: Number
+    Default: 2
+  MinCapacity:
+    Type: Number
+    Default: 2
+  MaxCapacity:
+    Type: Number
+    Default: 6
+
+Resources:
+  # ------------------------------------------------------------------ network
+  Vpc:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.20.0.0/16
+      EnableDnsHostnames: true
+      EnableDnsSupport: true
+      Tags: [{ Key: Name, Value: !Ref AppName }]
+  InternetGateway:
+    Type: AWS::EC2::InternetGateway
+  GatewayAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties: { VpcId: !Ref Vpc, InternetGatewayId: !Ref InternetGateway }
+  PublicSubnetA:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref Vpc
+      CidrBlock: 10.20.0.0/20
+      AvailabilityZone: !Select [0, !GetAZs '']
+      MapPublicIpOnLaunch: true
+      Tags: [{ Key: Name, Value: !Sub '${AppName}-public-a' }]
+  PublicSubnetB:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref Vpc
+      CidrBlock: 10.20.16.0/20
+      AvailabilityZone: !Select [1, !GetAZs '']
+      MapPublicIpOnLaunch: true
+      Tags: [{ Key: Name, Value: !Sub '${AppName}-public-b' }]
+  PublicRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties: { VpcId: !Ref Vpc }
+  PublicRoute:
+    Type: AWS::EC2::Route
+    DependsOn: GatewayAttachment
+    Properties:
+      RouteTableId: !Ref PublicRouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref InternetGateway
+  SubnetARoute:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties: { SubnetId: !Ref PublicSubnetA, RouteTableId: !Ref PublicRouteTable }
+  SubnetBRoute:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties: { SubnetId: !Ref PublicSubnetB, RouteTableId: !Ref PublicRouteTable }
+
+  AlbSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: ALB - HTTP from CloudFront edge locations only
+      VpcId: !Ref Vpc
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          SourcePrefixListId: !Ref CloudFrontPrefixListId
+  ServiceSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: API tasks - traffic from the ALB only
+      VpcId: !Ref Vpc
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 4000
+          ToPort: 4000
+          SourceSecurityGroupId: !Ref AlbSecurityGroup
+
+  # ------------------------------------------------------------------ load balancer
+  LoadBalancer:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Properties:
+      Scheme: internet-facing
+      Subnets: [!Ref PublicSubnetA, !Ref PublicSubnetB]
+      SecurityGroups: [!Ref AlbSecurityGroup]
+      LoadBalancerAttributes:
+        - { Key: idle_timeout.timeout_seconds, Value: '60' }
+  TargetGroup:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+      VpcId: !Ref Vpc
+      Port: 4000
+      Protocol: HTTP
+      TargetType: ip
+      HealthCheckPath: /api/v1/health
+      HealthCheckIntervalSeconds: 15
+      HealthyThresholdCount: 2
+      UnhealthyThresholdCount: 3
+      TargetGroupAttributes:
+        - { Key: deregistration_delay.timeout_seconds, Value: '20' }
+  Listener:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Properties:
+      LoadBalancerArn: !Ref LoadBalancer
+      Port: 80
+      Protocol: HTTP
+      DefaultActions:
+        - Type: fixed-response
+          FixedResponseConfig:
+            { StatusCode: '403', ContentType: text/plain, MessageBody: Forbidden }
+  ListenerRuleFromCloudFront:
+    Type: AWS::ElasticLoadBalancingV2::ListenerRule
+    Properties:
+      ListenerArn: !Ref Listener
+      Priority: 1
+      Conditions:
+        - Field: http-header
+          HttpHeaderConfig: { HttpHeaderName: X-Origin-Verify, Values: [!Ref OriginVerifySecret] }
+      Actions:
+        - Type: forward
+          TargetGroupArn: !Ref TargetGroup
+
+  # ------------------------------------------------------------------ ECS Fargate
+  Cluster:
+    Type: AWS::ECS::Cluster
+    Properties:
+      ClusterName: !Ref AppName
+      ClusterSettings: [{ Name: containerInsights, Value: enabled }]
+  LogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub /ecs/${AppName}-api
+      RetentionInDays: 30
+  ExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - {
+              Effect: Allow,
+              Principal: { Service: ecs-tasks.amazonaws.com },
+              Action: sts:AssumeRole,
+            }
+      ManagedPolicyArns: [arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy]
+      Policies:
+        - PolicyName: read-app-secrets
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action: [ssm:GetParameters]
+                Resource:
+                  - !Sub arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter${MongoUriParam}
+                  - !Sub arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter${JwtSecretParam}
+              - Effect: Allow
+                Action: [kms:Decrypt]
+                Resource: '*'
+  TaskDefinition:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      Family: !Sub ${AppName}-api
+      Cpu: '512'
+      Memory: '1024'
+      NetworkMode: awsvpc
+      RequiresCompatibilities: [FARGATE]
+      RuntimePlatform: { CpuArchitecture: X86_64, OperatingSystemFamily: LINUX }
+      ExecutionRoleArn: !GetAtt ExecutionRole.Arn
+      ContainerDefinitions:
+        - Name: api
+          Image: !Ref ImageUri
+          Essential: true
+          PortMappings: [{ ContainerPort: 4000 }]
+          Environment:
+            - { Name: NODE_ENV, Value: production }
+            - { Name: PORT, Value: '4000' }
+            - { Name: TRUST_PROXY, Value: '2' } # CloudFront + ALB
+            - { Name: LOG_LEVEL, Value: info }
+          Secrets:
+            - {
+                Name: MONGODB_URI,
+                ValueFrom: !Sub 'arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter${MongoUriParam}',
+              }
+            - {
+                Name: JWT_ACCESS_SECRET,
+                ValueFrom: !Sub 'arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter${JwtSecretParam}',
+              }
+          LogConfiguration:
+            LogDriver: awslogs
+            Options:
+              awslogs-group: !Ref LogGroup
+              awslogs-region: !Ref AWS::Region
+              awslogs-stream-prefix: api
+  Service:
+    Type: AWS::ECS::Service
+    DependsOn: ListenerRuleFromCloudFront
+    Properties:
+      ServiceName: !Sub ${AppName}-api
+      Cluster: !Ref Cluster
+      TaskDefinition: !Ref TaskDefinition
+      LaunchType: FARGATE
+      DesiredCount: !Ref DesiredCount
+      HealthCheckGracePeriodSeconds: 30
+      DeploymentConfiguration:
+        MinimumHealthyPercent: 100
+        MaximumPercent: 200
+        DeploymentCircuitBreaker: { Enable: true, Rollback: true }
+      NetworkConfiguration:
+        AwsvpcConfiguration:
+          AssignPublicIp: ENABLED # pulls from ECR without a NAT gateway; inbound is still ALB-only
+          Subnets: [!Ref PublicSubnetA, !Ref PublicSubnetB]
+          SecurityGroups: [!Ref ServiceSecurityGroup]
+      LoadBalancers:
+        - { ContainerName: api, ContainerPort: 4000, TargetGroupArn: !Ref TargetGroup }
+  ScalableTarget:
+    Type: AWS::ApplicationAutoScaling::ScalableTarget
+    Properties:
+      ServiceNamespace: ecs
+      ScalableDimension: ecs:service:DesiredCount
+      ResourceId: !Sub service/${Cluster}/${Service.Name}
+      MinCapacity: !Ref MinCapacity
+      MaxCapacity: !Ref MaxCapacity
+  CpuScaling:
+    Type: AWS::ApplicationAutoScaling::ScalingPolicy
+    Properties:
+      PolicyName: cpu-target-60
+      PolicyType: TargetTrackingScaling
+      ScalingTargetId: !Ref ScalableTarget
+      TargetTrackingScalingPolicyConfiguration:
+        TargetValue: 60
+        PredefinedMetricSpecification: { PredefinedMetricType: ECSServiceAverageCPUUtilization }
+        ScaleInCooldown: 120
+        ScaleOutCooldown: 60
+
+  # ------------------------------------------------------------------ static site
+  SiteBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          [{ ServerSideEncryptionByDefault: { SSEAlgorithm: AES256 } }]
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+  OriginAccessControl:
+    Type: AWS::CloudFront::OriginAccessControl
+    Properties:
+      OriginAccessControlConfig:
+        Name: !Sub ${AppName}-oac
+        OriginAccessControlOriginType: s3
+        SigningBehavior: always
+        SigningProtocol: sigv4
+  SiteBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref SiteBucket
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal: { Service: cloudfront.amazonaws.com }
+            Action: s3:GetObject
+            Resource: !Sub ${SiteBucket.Arn}/*
+            Condition:
+              StringEquals:
+                {
+                  AWS:SourceArn: !Sub 'arn:aws:cloudfront::${AWS::AccountId}:distribution/${Distribution}',
+                }
+
+  SpaRewriteFunction:
+    Type: AWS::CloudFront::Function
+    Properties:
+      Name: !Sub ${AppName}-spa-rewrite
+      AutoPublish: true
+      FunctionConfig:
+        { Comment: Serve index.html for client-side routes, Runtime: cloudfront-js-2.0 }
+      FunctionCode: |
+        function handler(event) {
+          var request = event.request;
+          if (request.uri.indexOf('.') === -1) request.uri = '/index.html';
+          return request;
+        }
+
+  # API cache policy: TTL 0 by default (nothing cached unless the origin says so, e.g. /sheet),
+  # Authorization in the key so it is forwarded and responses can never leak across users.
+  ApiCachePolicy:
+    Type: AWS::CloudFront::CachePolicy
+    Properties:
+      CachePolicyConfig:
+        Name: !Sub ${AppName}-api
+        MinTTL: 0
+        DefaultTTL: 0
+        MaxTTL: 300
+        ParametersInCacheKeyAndForwardedToOrigin:
+          EnableAcceptEncodingGzip: true
+          EnableAcceptEncodingBrotli: true
+          HeadersConfig: { HeaderBehavior: whitelist, Headers: [Authorization] }
+          CookiesConfig: { CookieBehavior: none }
+          QueryStringsConfig: { QueryStringBehavior: all }
+
+  Distribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        Comment: !Sub ${AppName} web + api
+        HttpVersion: http2and3
+        PriceClass: PriceClass_200 # includes India edge locations
+        DefaultRootObject: index.html
+        Origins:
+          - Id: site
+            DomainName: !GetAtt SiteBucket.RegionalDomainName
+            OriginAccessControlId: !GetAtt OriginAccessControl.Id
+            S3OriginConfig: { OriginAccessIdentity: '' }
+          - Id: api
+            DomainName: !GetAtt LoadBalancer.DNSName
+            CustomOriginConfig: { OriginProtocolPolicy: http-only, HTTPPort: 80 }
+            OriginCustomHeaders:
+              - { HeaderName: X-Origin-Verify, HeaderValue: !Ref OriginVerifySecret }
+        DefaultCacheBehavior:
+          TargetOriginId: site
+          ViewerProtocolPolicy: redirect-to-https
+          Compress: true
+          CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6 # Managed-CachingOptimized
+          ResponseHeadersPolicyId: 67f7725c-6f97-4210-82d7-5512b31e9d03 # Managed-SecurityHeadersPolicy
+          FunctionAssociations:
+            - {
+                EventType: viewer-request,
+                FunctionARN: !GetAtt SpaRewriteFunction.FunctionMetadata.FunctionARN,
+              }
+        CacheBehaviors:
+          - PathPattern: /api/*
+            TargetOriginId: api
+            ViewerProtocolPolicy: redirect-to-https
+            Compress: true
+            AllowedMethods: [GET, HEAD, OPTIONS, PUT, PATCH, POST, DELETE]
+            CachedMethods: [GET, HEAD]
+            CachePolicyId: !Ref ApiCachePolicy
+            OriginRequestPolicyId: b689b0a8-53d0-40ab-baf2-68738e2966ac # Managed-AllViewerExceptHostHeader (cookies, X-Timezone, query)
+
+Outputs:
+  AppUrl:
+    Description: Public URL of the application
+    Value: !Sub https://${Distribution.DomainName}
+  DistributionId:
+    Value: !Ref Distribution
+  SiteBucketName:
+    Value: !Ref SiteBucket
+  ClusterName:
+    Value: !Ref Cluster
+  ServiceName:
+    Value: !GetAtt Service.Name
+  LoadBalancerDns:
+    Value: !GetAtt LoadBalancer.DNSName

@@ -1,0 +1,309 @@
+{
+  "title": "Two Pointers & Sliding Window",
+  "slug": "two-pointers-sliding-window",
+  "order": 4,
+  "description": "Shrink O(n²) scans into linear passes with pointers and windows.",
+  "icon": "move-horizontal",
+  "topics": [
+    {
+      "title": "Two Pointers",
+      "slug": "two-pointers",
+      "difficulty": "Medium",
+      "description": "Converging and same-direction pointers on sorted data.",
+      "resources": {
+        "youtube": "https://www.youtube.com/watch?v=9kdHxplyl5I",
+        "practice": {
+          "platform": "LeetCode",
+          "url": "https://leetcode.com/problem-list/two-pointers/"
+        },
+        "article": "https://www.geeksforgeeks.org/dsa/two-pointers-technique/"
+      },
+      "problems": [
+        {
+          "title": "Valid Palindrome",
+          "slug": "valid-palindrome",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=jJXJ16kPFWg",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/valid-palindrome/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/125/"
+          },
+          "tags": ["two-pointers", "string"]
+        },
+        {
+          "title": "Two Sum II - Input Array Is Sorted",
+          "slug": "two-sum-ii-input-array-is-sorted",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=cQ1Oz4ckceM",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/167/"
+          },
+          "tags": ["array", "two-pointers", "binary-search"]
+        },
+        {
+          "title": "3Sum",
+          "slug": "3sum",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=DhFh8Kw7ymk",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/3sum/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/15/"
+          },
+          "tags": ["array", "two-pointers", "sorting"]
+        },
+        {
+          "title": "Container With Most Water",
+          "slug": "container-with-most-water",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=UuiTKBwPgAo",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/container-with-most-water/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/11/"
+          },
+          "tags": ["array", "two-pointers", "greedy"]
+        },
+        {
+          "title": "4Sum",
+          "slug": "4sum",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=eD95WRfh81c",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/4sum/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/18/"
+          },
+          "tags": ["array", "two-pointers", "sorting"]
+        },
+        {
+          "title": "Trapping Rain Water",
+          "slug": "trapping-rain-water",
+          "difficulty": "Hard",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=ZI2z5pq0TqA",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/trapping-rain-water/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/42/"
+          },
+          "tags": ["array", "two-pointers", "dynamic-programming", "stack"]
+        }
+      ]
+    },
+    {
+      "title": "Fixed-Size Window",
+      "slug": "fixed-window",
+      "difficulty": "Easy",
+      "description": "Slide a window of size k and update the answer incrementally.",
+      "resources": {
+        "youtube": "https://www.youtube.com/watch?v=GaXwHThEgGk",
+        "practice": {
+          "platform": "LeetCode",
+          "url": "https://leetcode.com/problem-list/sliding-window/"
+        },
+        "article": "https://www.geeksforgeeks.org/dsa/window-sliding-technique/"
+      },
+      "problems": [
+        {
+          "title": "Maximum Average Subarray I",
+          "slug": "maximum-average-subarray-i",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=UdUUnoiLkPg",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/maximum-average-subarray-i/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/643/"
+          },
+          "tags": ["array", "sliding-window"]
+        },
+        {
+          "title": "Maximum Points You Can Obtain from Cards",
+          "slug": "maximum-points-you-can-obtain-from-cards",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=pBWCOCS636U",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/1423/"
+          },
+          "tags": ["array", "sliding-window", "prefix-sum"]
+        },
+        {
+          "title": "Permutation in String",
+          "slug": "permutation-in-string",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=UbyhOgBN834",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/permutation-in-string/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/567/"
+          },
+          "tags": ["hash-table", "two-pointers", "string", "sliding-window"]
+        },
+        {
+          "title": "Find All Anagrams in a String",
+          "slug": "find-all-anagrams-in-a-string",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=G8xtZy0fDKg",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/find-all-anagrams-in-a-string/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/438/"
+          },
+          "tags": ["hash-table", "string", "sliding-window"]
+        }
+      ]
+    },
+    {
+      "title": "Variable-Size Window",
+      "slug": "variable-window",
+      "difficulty": "Hard",
+      "description": "Grow and shrink a window while maintaining an invariant.",
+      "resources": {
+        "youtube": "https://www.youtube.com/watch?v=9kdHxplyl5I",
+        "practice": {
+          "platform": "LeetCode",
+          "url": "https://leetcode.com/problem-list/sliding-window/"
+        },
+        "article": "https://www.geeksforgeeks.org/dsa/window-sliding-technique/"
+      },
+      "problems": [
+        {
+          "title": "Longest Substring Without Repeating Characters",
+          "slug": "longest-substring-without-repeating-characters",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=-zSxTJkcdAo",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/longest-substring-without-repeating-characters/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/3/"
+          },
+          "tags": ["hash-table", "string", "sliding-window"]
+        },
+        {
+          "title": "Max Consecutive Ones III",
+          "slug": "max-consecutive-ones-iii",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=3E4JBHSLpYk",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/max-consecutive-ones-iii/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/1004/"
+          },
+          "tags": ["array", "binary-search", "sliding-window", "prefix-sum"]
+        },
+        {
+          "title": "Fruit Into Baskets",
+          "slug": "fruit-into-baskets",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=e3bs0uA1NhQ",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/fruit-into-baskets/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/904/"
+          },
+          "tags": ["array", "hash-table", "sliding-window"]
+        },
+        {
+          "title": "Longest Repeating Character Replacement",
+          "slug": "longest-repeating-character-replacement",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=_eNhaDCr6P0",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/longest-repeating-character-replacement/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/424/"
+          },
+          "tags": ["hash-table", "string", "sliding-window"]
+        },
+        {
+          "title": "Books (CF 279B)",
+          "slug": "cf-279b-books",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=3NfewJkaPog",
+            "practice": {
+              "platform": "Codeforces",
+              "url": "https://codeforces.com/problemset/problem/279/B"
+            },
+            "article": "https://www.geeksforgeeks.org/dsa/window-sliding-technique/"
+          },
+          "tags": ["binary-search", "brute-force", "implementation", "two-pointers"]
+        },
+        {
+          "title": "Minimum Window Substring",
+          "slug": "minimum-window-substring",
+          "difficulty": "Hard",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=WJaij9ffOIY",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/minimum-window-substring/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/76/"
+          },
+          "tags": ["hash-table", "string", "sliding-window"]
+        },
+        {
+          "title": "Sliding Window Maximum",
+          "slug": "sliding-window-maximum",
+          "difficulty": "Hard",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=NwBvene4Imo",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/sliding-window-maximum/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/239/"
+          },
+          "tags": ["array", "queue", "sliding-window", "heap-priority-queue"]
+        },
+        {
+          "title": "Subarrays with K Different Integers",
+          "slug": "subarrays-with-k-different-integers",
+          "difficulty": "Hard",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=7wYGbV_LsX4",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/subarrays-with-k-different-integers/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/992/"
+          },
+          "tags": ["array", "hash-table", "sliding-window", "counting"]
+        }
+      ]
+    }
+  ]
+}

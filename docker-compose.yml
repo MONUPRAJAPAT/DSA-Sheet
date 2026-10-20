@@ -1,0 +1,33 @@
+# Full stack locally:  docker compose up --build   →  http://localhost:8080
+# (seed once with:     docker compose run --rm api node server/dist/seed/seed.js)
+services:
+  mongo:
+    image: mongo:8.2
+    restart: unless-stopped
+    ports: ['27017:27017']
+    volumes: [mongo-data:/data/db]
+    healthcheck:
+      test: ['CMD', 'mongosh', '--quiet', '--eval', 'db.runCommand({ ping: 1 })']
+      interval: 10s
+      retries: 5
+
+  api:
+    build: { context: ., dockerfile: server/Dockerfile }
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 4000
+      MONGODB_URI: mongodb://mongo:27017/dsa-sheet
+      JWT_ACCESS_SECRET: ${JWT_ACCESS_SECRET:-local-compose-secret-change-me-0123456789abcdef}
+      TRUST_PROXY: 1
+    depends_on:
+      mongo: { condition: service_healthy }
+
+  web:
+    build: { context: ., dockerfile: infra/web.Dockerfile }
+    restart: unless-stopped
+    ports: ['8080:80']
+    depends_on: [api]
+
+volumes:
+  mongo-data:

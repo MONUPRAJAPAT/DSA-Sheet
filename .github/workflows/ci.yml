@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: Typecheck · Test · Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npm run typecheck
+      - name: API tests (in-memory MongoDB)
+        run: npm test
+      - run: npm run build -w client
+      - name: Docker image builds
+        run: docker build -f server/Dockerfile -t dsa-sheet-api:ci .
+
+  e2e:
+    name: End-to-end (Playwright)
+    runs-on: ubuntu-latest
+    needs: quality
+    services:
+      mongo:
+        image: mongo:8.2
+        ports: ['27017:27017']
+    env:
+      MONGODB_URI: mongodb://localhost:27017/dsa-sheet
+      JWT_ACCESS_SECRET: ci-only-secret-0123456789abcdef0123456789
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run seed
+      - name: Start API and web preview
+        run: |
+          npm run dev -w server > api.log 2>&1 &
+          npm run build -w client && (npx -w client vite preview --port 4173 > web.log 2>&1 &)
+          npx wait-on -t 60000 http://localhost:4000/api/v1/health http://localhost:4173
+      - run: npx playwright test
+        env: { E2E_BASE_URL: 'http://localhost:4173' }
+      - if: failure()
+        uses: actions/upload-artifact@v4
+        with: { name: playwright-report, path: playwright-report }

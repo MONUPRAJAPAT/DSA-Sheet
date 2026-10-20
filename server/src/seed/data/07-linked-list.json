@@ -1,0 +1,267 @@
+{
+  "title": "Linked List",
+  "slug": "linked-list",
+  "order": 7,
+  "description": "Pointer manipulation, fast & slow pointers and in-place rewiring.",
+  "icon": "link",
+  "topics": [
+    {
+      "title": "Linked List Fundamentals",
+      "slug": "linked-list-fundamentals",
+      "difficulty": "Easy",
+      "description": "Traversal, insertion, deletion and reversal.",
+      "resources": {
+        "youtube": "https://www.youtube.com/watch?v=Nq7ok-OyEpg",
+        "practice": {
+          "platform": "LeetCode",
+          "url": "https://leetcode.com/problem-list/linked-list/"
+        },
+        "article": "https://www.geeksforgeeks.org/dsa/linked-list-data-structure/"
+      },
+      "problems": [
+        {
+          "title": "Reverse Linked List",
+          "slug": "reverse-linked-list",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=G0_I-ZF0S38",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/reverse-linked-list/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/206/"
+          },
+          "tags": ["linked-list", "recursion"]
+        },
+        {
+          "title": "Merge Two Sorted Lists",
+          "slug": "merge-two-sorted-lists",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=jXu-H7XuClE",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/merge-two-sorted-lists/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/21/"
+          },
+          "tags": ["linked-list", "recursion"]
+        },
+        {
+          "title": "Remove Linked List Elements",
+          "slug": "remove-linked-list-elements",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=JI71sxtHTng",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/remove-linked-list-elements/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/203/"
+          },
+          "tags": ["linked-list", "recursion"]
+        },
+        {
+          "title": "Intersection of Two Linked Lists",
+          "slug": "intersection-of-two-linked-lists",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=D0X0BONOQhI",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/intersection-of-two-linked-lists/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/160/"
+          },
+          "tags": ["hash-table", "linked-list", "two-pointers"]
+        }
+      ]
+    },
+    {
+      "title": "Fast & Slow Pointers",
+      "slug": "fast-slow-pointers",
+      "difficulty": "Medium",
+      "description": "Floyd's tortoise and hare for middles, cycles and offsets.",
+      "resources": {
+        "youtube": "https://www.youtube.com/watch?v=wiOo4DC5GGA",
+        "practice": {
+          "platform": "LeetCode",
+          "url": "https://leetcode.com/problem-list/linked-list/"
+        },
+        "article": "https://www.geeksforgeeks.org/dsa/floyds-cycle-finding-algorithm/"
+      },
+      "problems": [
+        {
+          "title": "Middle of the Linked List",
+          "slug": "middle-of-the-linked-list",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=A2_ldqM4QcY",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/middle-of-the-linked-list/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/876/"
+          },
+          "tags": ["linked-list", "two-pointers"]
+        },
+        {
+          "title": "Linked List Cycle",
+          "slug": "linked-list-cycle",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=gBTe7lFR3vc",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/linked-list-cycle/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/141/"
+          },
+          "tags": ["hash-table", "linked-list", "two-pointers", "floyds-cycle-finding-algorithm"]
+        },
+        {
+          "title": "Palindrome Linked List",
+          "slug": "palindrome-linked-list",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=yOzXms1J6Nk",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/palindrome-linked-list/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/234/"
+          },
+          "tags": ["linked-list", "two-pointers", "stack", "recursion"]
+        },
+        {
+          "title": "Remove Nth Node From End of List",
+          "slug": "remove-nth-node-from-end-of-list",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=3kMKYQ2wNIU",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/remove-nth-node-from-end-of-list/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/19/"
+          },
+          "tags": ["linked-list", "two-pointers"]
+        },
+        {
+          "title": "Linked List Cycle II",
+          "slug": "linked-list-cycle-ii",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=vlrxs-LPni4",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/linked-list-cycle-ii/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/142/"
+          },
+          "tags": ["hash-table", "linked-list", "two-pointers", "floyds-cycle-finding-algorithm"]
+        },
+        {
+          "title": "Reorder List",
+          "slug": "reorder-list",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=S5bfdUTrKLM",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/reorder-list/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/143/"
+          },
+          "tags": ["linked-list", "two-pointers", "stack", "recursion"]
+        }
+      ]
+    },
+    {
+      "title": "Advanced Linked List",
+      "slug": "advanced-linked-list",
+      "difficulty": "Hard",
+      "description": "Deep copies, caches and k-group reversals.",
+      "resources": {
+        "youtube": "https://www.youtube.com/watch?v=z9bJUPxzFOw",
+        "practice": {
+          "platform": "LeetCode",
+          "url": "https://leetcode.com/problem-list/linked-list/"
+        },
+        "article": "https://www.geeksforgeeks.org/dsa/lru-cache-implementation/"
+      },
+      "problems": [
+        {
+          "title": "Add Two Numbers",
+          "slug": "add-two-numbers",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=wgFPrzTjm7s",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/add-two-numbers/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/2/"
+          },
+          "tags": ["linked-list", "math", "recursion"]
+        },
+        {
+          "title": "Copy List with Random Pointer",
+          "slug": "copy-list-with-random-pointer",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=q570bKdrnlw",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/copy-list-with-random-pointer/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/138/"
+          },
+          "tags": ["hash-table", "linked-list"]
+        },
+        {
+          "title": "LRU Cache",
+          "slug": "lru-cache",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=z9bJUPxzFOw",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/lru-cache/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/146/"
+          },
+          "tags": ["hash-table", "linked-list", "design", "doubly-linked-list"]
+        },
+        {
+          "title": "Merge k Sorted Lists",
+          "slug": "merge-k-sorted-lists",
+          "difficulty": "Hard",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=1zktEppsdig",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/merge-k-sorted-lists/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/23/"
+          },
+          "tags": ["linked-list", "divide-and-conquer", "heap-priority-queue", "merge-sort"]
+        },
+        {
+          "title": "Reverse Nodes in k-Group",
+          "slug": "reverse-nodes-in-k-group",
+          "difficulty": "Hard",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=lIar1skcQYI",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/reverse-nodes-in-k-group/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/25/"
+          },
+          "tags": ["linked-list", "recursion"]
+        }
+      ]
+    }
+  ]
+}

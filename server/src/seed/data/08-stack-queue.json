@@ -1,0 +1,267 @@
+{
+  "title": "Stack & Queue",
+  "slug": "stack-queue",
+  "order": 8,
+  "description": "LIFO / FIFO structures and the powerful monotonic stack.",
+  "icon": "layers",
+  "topics": [
+    {
+      "title": "Stack & Queue Fundamentals",
+      "slug": "stack-queue-fundamentals",
+      "difficulty": "Easy",
+      "description": "Implement and apply stacks and queues.",
+      "resources": {
+        "youtube": "https://www.youtube.com/watch?v=tqQ5fTamIN4",
+        "practice": {
+          "platform": "LeetCode",
+          "url": "https://leetcode.com/problem-list/stack/"
+        },
+        "article": "https://www.geeksforgeeks.org/dsa/stack-data-structure/"
+      },
+      "problems": [
+        {
+          "title": "Valid Parentheses",
+          "slug": "valid-parentheses",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=WTzjTskDFMg",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/valid-parentheses/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/20/"
+          },
+          "tags": ["string", "stack", "bracket-sequences"]
+        },
+        {
+          "title": "Implement Queue using Stacks",
+          "slug": "implement-queue-using-stacks",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=3Et9MrMc02A",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/implement-queue-using-stacks/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/232/"
+          },
+          "tags": ["stack", "design", "queue"]
+        },
+        {
+          "title": "Implement Stack using Queues",
+          "slug": "implement-stack-using-queues",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=jDZQKzEtbYQ",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/implement-stack-using-queues/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/225/"
+          },
+          "tags": ["stack", "design", "queue"]
+        },
+        {
+          "title": "Min Stack",
+          "slug": "min-stack",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=NdDIaH91P0g",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/min-stack/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/155/"
+          },
+          "tags": ["stack", "design"]
+        },
+        {
+          "title": "Evaluate Reverse Polish Notation",
+          "slug": "evaluate-reverse-polish-notation",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=iu0082c4HDE",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/evaluate-reverse-polish-notation/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/150/"
+          },
+          "tags": ["array", "math", "stack"]
+        }
+      ]
+    },
+    {
+      "title": "Monotonic Stack",
+      "slug": "monotonic-stack",
+      "difficulty": "Medium",
+      "description": "Next greater / smaller element patterns in O(n).",
+      "resources": {
+        "youtube": "https://www.youtube.com/watch?v=e7XQLtOQM3I",
+        "practice": {
+          "platform": "LeetCode",
+          "url": "https://leetcode.com/problem-list/monotonic-stack/"
+        },
+        "article": "https://www.geeksforgeeks.org/dsa/introduction-to-monotonic-stack-2/"
+      },
+      "problems": [
+        {
+          "title": "Next Greater Element I",
+          "slug": "next-greater-element-i",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=e7XQLtOQM3I",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/next-greater-element-i/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/496/"
+          },
+          "tags": ["array", "hash-table", "stack", "monotonic-stack"]
+        },
+        {
+          "title": "Next Greater Element II",
+          "slug": "next-greater-element-ii",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=7PrncD7v9YQ",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/next-greater-element-ii/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/503/"
+          },
+          "tags": ["array", "stack", "monotonic-stack"]
+        },
+        {
+          "title": "Daily Temperatures",
+          "slug": "daily-temperatures",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=cTBiBSnjO3c",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/daily-temperatures/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/739/"
+          },
+          "tags": ["array", "stack", "monotonic-stack"]
+        },
+        {
+          "title": "Online Stock Span",
+          "slug": "online-stock-span",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=slYh0ZNEqSw",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/online-stock-span/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/901/"
+          },
+          "tags": ["stack", "design", "monotonic-stack", "data-stream"]
+        },
+        {
+          "title": "Asteroid Collision",
+          "slug": "asteroid-collision",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=LN7KjRszjk4",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/asteroid-collision/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/735/"
+          },
+          "tags": ["array", "stack", "simulation"]
+        },
+        {
+          "title": "Remove K Digits",
+          "slug": "remove-k-digits",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=jmbuRzYPGrg",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/remove-k-digits/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/402/"
+          },
+          "tags": ["string", "stack", "greedy", "monotonic-stack"]
+        }
+      ]
+    },
+    {
+      "title": "Advanced Stack Problems",
+      "slug": "advanced-stack",
+      "difficulty": "Hard",
+      "description": "Histograms, contribution technique and expression parsing.",
+      "resources": {
+        "youtube": "https://www.youtube.com/watch?v=Bzat9vgD0fs",
+        "practice": {
+          "platform": "LeetCode",
+          "url": "https://leetcode.com/problem-list/monotonic-stack/"
+        },
+        "article": "https://www.geeksforgeeks.org/dsa/largest-rectangular-area-in-a-histogram-using-stack/"
+      },
+      "problems": [
+        {
+          "title": "Sum of Subarray Minimums",
+          "slug": "sum-of-subarray-minimums",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=v0e8p9JCgRc",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/sum-of-subarray-minimums/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/907/"
+          },
+          "tags": ["array", "dynamic-programming", "stack", "monotonic-stack"]
+        },
+        {
+          "title": "Largest Rectangle in Histogram",
+          "slug": "largest-rectangle-in-histogram",
+          "difficulty": "Hard",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=Bzat9vgD0fs",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/largest-rectangle-in-histogram/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/84/"
+          },
+          "tags": ["array", "stack", "monotonic-stack", "range-minimum-maximum-query"]
+        },
+        {
+          "title": "Maximal Rectangle",
+          "slug": "maximal-rectangle",
+          "difficulty": "Hard",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=ttVu6G7Ayik",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/maximal-rectangle/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/85/"
+          },
+          "tags": ["array", "dynamic-programming", "stack", "matrix"]
+        },
+        {
+          "title": "Basic Calculator",
+          "slug": "basic-calculator",
+          "difficulty": "Hard",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=3AEKyHx3tzU",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/basic-calculator/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/224/"
+          },
+          "tags": ["math", "string", "stack", "recursion"]
+        }
+      ]
+    }
+  ]
+}

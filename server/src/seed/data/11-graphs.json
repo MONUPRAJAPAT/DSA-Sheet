@@ -1,0 +1,367 @@
+{
+  "title": "Graphs",
+  "slug": "graphs",
+  "order": 11,
+  "description": "BFS/DFS, topological sort, shortest paths, MST and DSU.",
+  "icon": "waypoints",
+  "topics": [
+    {
+      "title": "BFS & DFS",
+      "slug": "bfs-dfs",
+      "difficulty": "Medium",
+      "description": "Traverse grids and graphs; connected components.",
+      "resources": {
+        "youtube": "https://www.youtube.com/watch?v=-tgVpUgsQ5k",
+        "practice": {
+          "platform": "LeetCode",
+          "url": "https://leetcode.com/problem-list/breadth-first-search/"
+        },
+        "article": "https://www.geeksforgeeks.org/dsa/breadth-first-search-or-bfs-for-a-graph/"
+      },
+      "problems": [
+        {
+          "title": "Flood Fill",
+          "slug": "flood-fill",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=C-2_uSRli8o",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/flood-fill/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/733/"
+          },
+          "tags": ["array", "depth-first-search", "breadth-first-search", "matrix"]
+        },
+        {
+          "title": "Number of Islands",
+          "slug": "number-of-islands",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=muncqlKJrH0",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/number-of-islands/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/200/"
+          },
+          "tags": ["array", "depth-first-search", "breadth-first-search", "union-find"]
+        },
+        {
+          "title": "Max Area of Island",
+          "slug": "max-area-of-island",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=iJGr1OtmH0c",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/max-area-of-island/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/695/"
+          },
+          "tags": ["array", "depth-first-search", "breadth-first-search", "union-find"]
+        },
+        {
+          "title": "Rotting Oranges",
+          "slug": "rotting-oranges",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=y704fEOx0s0",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/rotting-oranges/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/994/"
+          },
+          "tags": ["array", "breadth-first-search", "matrix"]
+        },
+        {
+          "title": "01 Matrix",
+          "slug": "01-matrix",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=edXdVwkYHF8",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/01-matrix/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/542/"
+          },
+          "tags": ["array", "dynamic-programming", "breadth-first-search", "matrix"]
+        },
+        {
+          "title": "Surrounded Regions",
+          "slug": "surrounded-regions",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=BtdgAys4yMk",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/surrounded-regions/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/130/"
+          },
+          "tags": ["array", "depth-first-search", "breadth-first-search", "union-find"]
+        },
+        {
+          "title": "Clone Graph",
+          "slug": "clone-graph",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=mQeF6bN8hMk",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/clone-graph/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/133/"
+          },
+          "tags": ["hash-table", "depth-first-search", "breadth-first-search", "graph"]
+        }
+      ]
+    },
+    {
+      "title": "Topological Sort & Cycles",
+      "slug": "topological-sort",
+      "difficulty": "Medium",
+      "description": "Kahn's algorithm, DFS ordering and bipartite checks.",
+      "resources": {
+        "youtube": "https://www.youtube.com/watch?v=73sneFXuTEg",
+        "practice": {
+          "platform": "LeetCode",
+          "url": "https://leetcode.com/problem-list/topological-sort/"
+        },
+        "article": "https://cp-algorithms.com/graph/topological-sort.html"
+      },
+      "problems": [
+        {
+          "title": "Is Graph Bipartite?",
+          "slug": "is-graph-bipartite",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=-vu34sct1g8",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/is-graph-bipartite/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/785/"
+          },
+          "tags": ["depth-first-search", "breadth-first-search", "union-find", "graph"]
+        },
+        {
+          "title": "Course Schedule",
+          "slug": "course-schedule",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=WAOfKpxYHR8",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/course-schedule/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/207/"
+          },
+          "tags": ["depth-first-search", "breadth-first-search", "graph", "topological-sort"]
+        },
+        {
+          "title": "Course Schedule II",
+          "slug": "course-schedule-ii",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=WAOfKpxYHR8",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/course-schedule-ii/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/210/"
+          },
+          "tags": ["depth-first-search", "breadth-first-search", "graph", "topological-sort"]
+        },
+        {
+          "title": "Find Eventual Safe States",
+          "slug": "find-eventual-safe-states",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=uRbJ1OF9aYM",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/find-eventual-safe-states/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/802/"
+          },
+          "tags": ["depth-first-search", "breadth-first-search", "graph", "topological-sort"]
+        }
+      ]
+    },
+    {
+      "title": "Shortest Paths & MST",
+      "slug": "shortest-paths-mst",
+      "difficulty": "Hard",
+      "description": "Dijkstra, Bellman-Ford and Prim's / Kruskal's.",
+      "resources": {
+        "youtube": "https://www.youtube.com/watch?v=XB4MIexjvY0",
+        "practice": {
+          "platform": "LeetCode",
+          "url": "https://leetcode.com/problem-list/shortest-path/"
+        },
+        "article": "https://cp-algorithms.com/graph/dijkstra.html"
+      },
+      "problems": [
+        {
+          "title": "Network Delay Time",
+          "slug": "network-delay-time",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=EaphyqKU4PQ",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/network-delay-time/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/743/"
+          },
+          "tags": ["depth-first-search", "breadth-first-search", "graph", "heap-priority-queue"]
+        },
+        {
+          "title": "Path With Minimum Effort",
+          "slug": "path-with-minimum-effort",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=0ytpZyiZFhA",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/path-with-minimum-effort/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/1631/"
+          },
+          "tags": ["array", "binary-search", "depth-first-search", "breadth-first-search"]
+        },
+        {
+          "title": "Cheapest Flights Within K Stops",
+          "slug": "cheapest-flights-within-k-stops",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=9XybHVqTHcQ",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/cheapest-flights-within-k-stops/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/787/"
+          },
+          "tags": ["dynamic-programming", "depth-first-search", "breadth-first-search", "graph"]
+        },
+        {
+          "title": "Min Cost to Connect All Points",
+          "slug": "min-cost-to-connect-all-points",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=f7JOBJIC-NA",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/min-cost-to-connect-all-points/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/1584/"
+          },
+          "tags": ["array", "union-find", "graph", "minimum-spanning-tree"]
+        },
+        {
+          "title": "Dijkstra? (CF 20C)",
+          "slug": "cf-20c-dijkstra",
+          "difficulty": "Hard",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=V6H1qAeB-l4",
+            "practice": {
+              "platform": "Codeforces",
+              "url": "https://codeforces.com/problemset/problem/20/C"
+            },
+            "article": "https://cp-algorithms.com/graph/dijkstra.html"
+          },
+          "tags": ["graphs", "shortest-paths"]
+        },
+        {
+          "title": "Swim in Rising Water",
+          "slug": "swim-in-rising-water",
+          "difficulty": "Hard",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=amvrKlMLuGY",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/swim-in-rising-water/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/778/"
+          },
+          "tags": ["array", "binary-search", "depth-first-search", "breadth-first-search"]
+        }
+      ]
+    },
+    {
+      "title": "Disjoint Set Union",
+      "slug": "disjoint-set-union",
+      "difficulty": "Hard",
+      "description": "Union by rank and path compression for dynamic connectivity.",
+      "resources": {
+        "youtube": "https://www.youtube.com/watch?v=aBxjDBC4M1U",
+        "practice": {
+          "platform": "LeetCode",
+          "url": "https://leetcode.com/problem-list/union-find/"
+        },
+        "article": "https://cp-algorithms.com/data_structures/disjoint_set_union.html"
+      },
+      "problems": [
+        {
+          "title": "Number of Provinces",
+          "slug": "number-of-provinces",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=ACzkVtewUYA",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/number-of-provinces/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/547/"
+          },
+          "tags": ["depth-first-search", "breadth-first-search", "union-find", "graph"]
+        },
+        {
+          "title": "Redundant Connection",
+          "slug": "redundant-connection",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=FXWRE67PLL0",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/redundant-connection/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/684/"
+          },
+          "tags": ["depth-first-search", "breadth-first-search", "union-find", "graph"]
+        },
+        {
+          "title": "Accounts Merge",
+          "slug": "accounts-merge",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=FMwpt_aQOGw",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/accounts-merge/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/721/"
+          },
+          "tags": ["array", "hash-table", "string", "depth-first-search"]
+        },
+        {
+          "title": "Making A Large Island",
+          "slug": "making-a-large-island",
+          "difficulty": "Hard",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=lgiz0Oup6gM",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/making-a-large-island/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/827/"
+          },
+          "tags": ["array", "depth-first-search", "breadth-first-search", "union-find"]
+        }
+      ]
+    }
+  ]
+}

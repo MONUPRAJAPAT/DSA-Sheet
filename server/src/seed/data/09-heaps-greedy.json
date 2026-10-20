@@ -1,0 +1,295 @@
+{
+  "title": "Heaps & Greedy",
+  "slug": "heaps-greedy",
+  "order": 9,
+  "description": "Priority queues for top-k problems and greedy choices that stay optimal.",
+  "icon": "triangle",
+  "topics": [
+    {
+      "title": "Heap Fundamentals",
+      "slug": "heap-fundamentals",
+      "difficulty": "Easy",
+      "description": "Min-heaps, max-heaps and the k-th element pattern.",
+      "resources": {
+        "youtube": "https://www.youtube.com/watch?v=NKJnHewiGdc",
+        "practice": {
+          "platform": "LeetCode",
+          "url": "https://leetcode.com/problem-list/heap-priority-queue/"
+        },
+        "article": "https://www.geeksforgeeks.org/dsa/heap-data-structure/"
+      },
+      "problems": [
+        {
+          "title": "Last Stone Weight",
+          "slug": "last-stone-weight",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=B-QCq79-Vfw",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/last-stone-weight/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/1046/"
+          },
+          "tags": ["array", "heap-priority-queue"]
+        },
+        {
+          "title": "Kth Largest Element in a Stream",
+          "slug": "kth-largest-element-in-a-stream",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=hOjcdrqMoQ8",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/kth-largest-element-in-a-stream/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/703/"
+          },
+          "tags": ["tree", "design", "binary-search-tree", "heap-priority-queue"]
+        },
+        {
+          "title": "Kth Largest Element in an Array",
+          "slug": "kth-largest-element-in-an-array",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=XEmy13g1Qxc",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/kth-largest-element-in-an-array/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/215/"
+          },
+          "tags": ["array", "divide-and-conquer", "sorting", "heap-priority-queue"]
+        },
+        {
+          "title": "K Closest Points to Origin",
+          "slug": "k-closest-points-to-origin",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=rI2EBUEMfTk",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/k-closest-points-to-origin/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/973/"
+          },
+          "tags": ["array", "math", "divide-and-conquer", "geometry"]
+        }
+      ]
+    },
+    {
+      "title": "Heap Patterns",
+      "slug": "heap-patterns",
+      "difficulty": "Hard",
+      "description": "Scheduling, two-heap medians and greedy with heaps.",
+      "resources": {
+        "youtube": "https://www.youtube.com/watch?v=itmhHWaHupI",
+        "practice": {
+          "platform": "LeetCode",
+          "url": "https://leetcode.com/problem-list/heap-priority-queue/"
+        },
+        "article": "https://www.geeksforgeeks.org/dsa/median-of-stream-of-running-integers-using-stl/"
+      },
+      "problems": [
+        {
+          "title": "Task Scheduler",
+          "slug": "task-scheduler",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=s8p8ukTyA2I",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/task-scheduler/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/621/"
+          },
+          "tags": ["array", "hash-table", "greedy", "sorting"]
+        },
+        {
+          "title": "Reorganize String",
+          "slug": "reorganize-string",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=2g_b1aYTHeg",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/reorganize-string/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/767/"
+          },
+          "tags": ["hash-table", "string", "greedy", "sorting"]
+        },
+        {
+          "title": "Hand of Straights",
+          "slug": "hand-of-straights",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=amnrMCVd2YI",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/hand-of-straights/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/846/"
+          },
+          "tags": ["array", "hash-table", "greedy", "sorting"]
+        },
+        {
+          "title": "Find Median from Data Stream",
+          "slug": "find-median-from-data-stream",
+          "difficulty": "Hard",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=itmhHWaHupI",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/find-median-from-data-stream/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/295/"
+          },
+          "tags": ["two-pointers", "design", "sorting", "heap-priority-queue"]
+        },
+        {
+          "title": "IPO",
+          "slug": "ipo",
+          "difficulty": "Hard",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=1IUzNJ6TPEM",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/ipo/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/502/"
+          },
+          "tags": ["array", "greedy", "sorting", "heap-priority-queue"]
+        }
+      ]
+    },
+    {
+      "title": "Greedy Algorithms",
+      "slug": "greedy",
+      "difficulty": "Medium",
+      "description": "Locally optimal choices — intervals, jumps and scheduling.",
+      "resources": {
+        "youtube": "https://www.youtube.com/watch?v=HZOUwKCKF5o",
+        "practice": {
+          "platform": "LeetCode",
+          "url": "https://leetcode.com/problem-list/greedy/"
+        },
+        "article": "https://www.geeksforgeeks.org/dsa/introduction-to-greedy-algorithm-data-structures-and-algorithm-tutorials/"
+      },
+      "problems": [
+        {
+          "title": "Assign Cookies",
+          "slug": "assign-cookies",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=DIX2p7vb9co",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/assign-cookies/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/455/"
+          },
+          "tags": ["array", "two-pointers", "greedy", "sorting"]
+        },
+        {
+          "title": "Jump Game",
+          "slug": "jump-game",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=tZAa_jJ3SwQ",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/jump-game/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/55/"
+          },
+          "tags": ["array", "dynamic-programming", "greedy"]
+        },
+        {
+          "title": "Jump Game II",
+          "slug": "jump-game-ii",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=7SBVnw7GSTk",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/jump-game-ii/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/45/"
+          },
+          "tags": ["array", "dynamic-programming", "greedy"]
+        },
+        {
+          "title": "Gas Station",
+          "slug": "gas-station",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=lJwbPZGo05A",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/gas-station/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/134/"
+          },
+          "tags": ["array", "greedy"]
+        },
+        {
+          "title": "Merge Intervals",
+          "slug": "merge-intervals",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=IexN60k62jo",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/merge-intervals/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/56/"
+          },
+          "tags": ["array", "sorting", "quicksort"]
+        },
+        {
+          "title": "Insert Interval",
+          "slug": "insert-interval",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=xxRE-46OCC8",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/insert-interval/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/57/"
+          },
+          "tags": ["array"]
+        },
+        {
+          "title": "Non-overlapping Intervals",
+          "slug": "non-overlapping-intervals",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=HDHQ8lAWakY",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/non-overlapping-intervals/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/435/"
+          },
+          "tags": ["array", "dynamic-programming", "greedy", "sorting"]
+        },
+        {
+          "title": "Woodcutters (CF 545C)",
+          "slug": "cf-545c-woodcutters",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=GxLIeD8xXgE",
+            "practice": {
+              "platform": "Codeforces",
+              "url": "https://codeforces.com/problemset/problem/545/C"
+            },
+            "article": "https://www.geeksforgeeks.org/dsa/introduction-to-greedy-algorithm-data-structures-and-algorithm-tutorials/"
+          },
+          "tags": ["dp", "greedy"]
+        }
+      ]
+    }
+  ]
+}

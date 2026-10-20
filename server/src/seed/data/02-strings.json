@@ -1,0 +1,225 @@
+{
+  "title": "Strings",
+  "slug": "strings",
+  "order": 2,
+  "description": "Character manipulation, palindromes and efficient pattern matching.",
+  "icon": "type",
+  "topics": [
+    {
+      "title": "String Fundamentals",
+      "slug": "string-fundamentals",
+      "difficulty": "Easy",
+      "description": "Parsing, reversing and comparing strings.",
+      "resources": {
+        "youtube": "https://www.youtube.com/watch?v=MOSjYaVymcU",
+        "practice": {
+          "platform": "LeetCode",
+          "url": "https://leetcode.com/problem-list/string/"
+        },
+        "article": "https://www.geeksforgeeks.org/dsa/introduction-to-strings-data-structure-and-algorithm-tutorials/"
+      },
+      "problems": [
+        {
+          "title": "Longest Common Prefix",
+          "slug": "longest-common-prefix",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=0sWShKIJoo4",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/longest-common-prefix/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/14/"
+          },
+          "tags": ["array", "string", "trie"]
+        },
+        {
+          "title": "Roman to Integer",
+          "slug": "roman-to-integer",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=3jdxYj3DD98",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/roman-to-integer/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/13/"
+          },
+          "tags": ["hash-table", "math", "string"]
+        },
+        {
+          "title": "Isomorphic Strings",
+          "slug": "isomorphic-strings",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=7yF-U1hLEqQ",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/isomorphic-strings/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/205/"
+          },
+          "tags": ["hash-table", "string"]
+        },
+        {
+          "title": "Reverse Words in a String",
+          "slug": "reverse-words-in-a-string",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=RitppzIdMCo",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/reverse-words-in-a-string/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/151/"
+          },
+          "tags": ["two-pointers", "string"]
+        },
+        {
+          "title": "String to Integer (atoi)",
+          "slug": "string-to-integer-atoi",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=2I9XO8jwZCA",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/string-to-integer-atoi/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/8/"
+          },
+          "tags": ["string"]
+        }
+      ]
+    },
+    {
+      "title": "Palindromes",
+      "slug": "palindromes",
+      "difficulty": "Medium",
+      "description": "Expand-around-centre and two-pointer palindrome checks.",
+      "resources": {
+        "youtube": "https://www.youtube.com/watch?v=tGAMyZxlwuA",
+        "practice": {
+          "platform": "LeetCode",
+          "url": "https://leetcode.com/problem-list/string/"
+        },
+        "article": "https://www.geeksforgeeks.org/dsa/longest-palindromic-substring/"
+      },
+      "problems": [
+        {
+          "title": "Valid Palindrome II",
+          "slug": "valid-palindrome-ii",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=JrxRYBwG6EI",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/valid-palindrome-ii/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/680/"
+          },
+          "tags": ["two-pointers", "string", "greedy"]
+        },
+        {
+          "title": "Palindromic Substrings",
+          "slug": "palindromic-substrings",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=4RACzI5-du8",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/palindromic-substrings/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/647/"
+          },
+          "tags": ["two-pointers", "string", "dynamic-programming"]
+        },
+        {
+          "title": "Longest Palindromic Substring",
+          "slug": "longest-palindromic-substring",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=XYQecbcd6_c",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/longest-palindromic-substring/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/5/"
+          },
+          "tags": ["two-pointers", "string", "dynamic-programming", "manacher"]
+        }
+      ]
+    },
+    {
+      "title": "Pattern Matching",
+      "slug": "pattern-matching",
+      "difficulty": "Hard",
+      "description": "KMP, LPS arrays and Z-function for linear-time matching.",
+      "resources": {
+        "youtube": "https://www.youtube.com/watch?v=JoF0Z7nVSrA",
+        "practice": {
+          "platform": "LeetCode",
+          "url": "https://leetcode.com/problem-list/string-matching/"
+        },
+        "article": "https://www.geeksforgeeks.org/dsa/kmp-algorithm-for-pattern-searching/"
+      },
+      "problems": [
+        {
+          "title": "Find the Index of the First Occurrence in a String",
+          "slug": "find-the-index-of-the-first-occurrence-in-a-string",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=Gjkhm1gYIMw",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/28/"
+          },
+          "tags": ["two-pointers", "string", "string-matching", "z-algorithm"]
+        },
+        {
+          "title": "Repeated Substring Pattern",
+          "slug": "repeated-substring-pattern",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=7J8x0XudV0Y",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/repeated-substring-pattern/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/459/"
+          },
+          "tags": ["string", "string-matching", "z-algorithm", "knuth-morris-pratt-algorithm"]
+        },
+        {
+          "title": "Longest Happy Prefix",
+          "slug": "longest-happy-prefix",
+          "difficulty": "Hard",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=u1Gd93lM1as",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/longest-happy-prefix/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/1392/"
+          },
+          "tags": ["string", "rolling-hash", "string-matching", "hash-function"]
+        },
+        {
+          "title": "Shortest Palindrome",
+          "slug": "shortest-palindrome",
+          "difficulty": "Hard",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=niOT-FK1RH8",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/shortest-palindrome/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/214/"
+          },
+          "tags": ["string", "rolling-hash", "string-matching", "hash-function"]
+        }
+      ]
+    }
+  ]
+}

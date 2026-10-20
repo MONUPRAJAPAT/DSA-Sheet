@@ -1,0 +1,367 @@
+{
+  "title": "Arrays",
+  "slug": "arrays",
+  "order": 1,
+  "description": "The foundation of DSA — traversal, in-place tricks, prefix sums, Kadane and 2D matrices.",
+  "icon": "brackets",
+  "topics": [
+    {
+      "title": "Array Fundamentals",
+      "slug": "array-fundamentals",
+      "difficulty": "Easy",
+      "description": "Traversal, in-place updates and the classic interview warm-ups.",
+      "resources": {
+        "youtube": "https://www.youtube.com/watch?v=37E9ckMDdTk",
+        "practice": {
+          "platform": "LeetCode",
+          "url": "https://leetcode.com/problem-list/array/"
+        },
+        "article": "https://www.geeksforgeeks.org/dsa/introduction-to-arrays-data-structure-and-algorithm-tutorials/"
+      },
+      "problems": [
+        {
+          "title": "Remove Duplicates from Sorted Array",
+          "slug": "remove-duplicates-from-sorted-array",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=DEJAZBq0FDA",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/remove-duplicates-from-sorted-array/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/26/"
+          },
+          "tags": ["array", "two-pointers"]
+        },
+        {
+          "title": "Move Zeroes",
+          "slug": "move-zeroes",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=aayNRwUN3Do",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/move-zeroes/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/283/"
+          },
+          "tags": ["array", "two-pointers"]
+        },
+        {
+          "title": "Missing Number",
+          "slug": "missing-number",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=bYWLJb3vCWY",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/missing-number/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/268/"
+          },
+          "tags": ["array", "hash-table", "math", "binary-search"]
+        },
+        {
+          "title": "Max Consecutive Ones",
+          "slug": "max-consecutive-ones",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=pPVE4KZ1hsU",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/max-consecutive-ones/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/485/"
+          },
+          "tags": ["array"]
+        },
+        {
+          "title": "Majority Element",
+          "slug": "majority-element",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=nP_ns3uSh80",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/majority-element/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/169/"
+          },
+          "tags": ["array", "hash-table", "divide-and-conquer", "sorting"]
+        },
+        {
+          "title": "Rotate Array",
+          "slug": "rotate-array",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=wvcQg43_V8U",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/rotate-array/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/189/"
+          },
+          "tags": ["array", "math", "two-pointers"]
+        },
+        {
+          "title": "Sort Colors",
+          "slug": "sort-colors",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=tp8JIuCXBaU",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/sort-colors/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/75/"
+          },
+          "tags": ["array", "two-pointers", "sorting", "quicksort"]
+        },
+        {
+          "title": "Next Permutation",
+          "slug": "next-permutation",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=JDOXKqF60RQ",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/next-permutation/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/31/"
+          },
+          "tags": ["array", "two-pointers"]
+        }
+      ]
+    },
+    {
+      "title": "Prefix Sum",
+      "slug": "prefix-sum",
+      "difficulty": "Medium",
+      "description": "Pre-compute running totals to answer range queries in O(1).",
+      "resources": {
+        "youtube": "https://www.youtube.com/watch?v=xbYr9JOC2Lk",
+        "practice": {
+          "platform": "LeetCode",
+          "url": "https://leetcode.com/problem-list/prefix-sum/"
+        },
+        "article": "https://www.geeksforgeeks.org/dsa/prefix-sum-array-implementation-applications-competitive-programming/"
+      },
+      "problems": [
+        {
+          "title": "Running Sum of 1d Array",
+          "slug": "running-sum-of-1d-array",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=fFJaIDUKDoA",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/running-sum-of-1d-array/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/1480/"
+          },
+          "tags": ["array", "prefix-sum"]
+        },
+        {
+          "title": "Find Pivot Index",
+          "slug": "find-pivot-index",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=u89i60lYx8U",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/find-pivot-index/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/724/"
+          },
+          "tags": ["array", "prefix-sum"]
+        },
+        {
+          "title": "Product of Array Except Self",
+          "slug": "product-of-array-except-self",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=bNvIQI2wAjk",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/product-of-array-except-self/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/238/"
+          },
+          "tags": ["array", "prefix-sum"]
+        },
+        {
+          "title": "Subarray Sum Equals K",
+          "slug": "subarray-sum-equals-k",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=xvNwoz-ufXA",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/subarray-sum-equals-k/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/560/"
+          },
+          "tags": ["array", "hash-table", "prefix-sum"]
+        },
+        {
+          "title": "Number of Ways (CF 466C)",
+          "slug": "cf-466c-number-of-ways",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=yEYi1lNMHE0",
+            "practice": {
+              "platform": "Codeforces",
+              "url": "https://codeforces.com/problemset/problem/466/C"
+            },
+            "article": "https://www.geeksforgeeks.org/dsa/prefix-sum-array-implementation-applications-competitive-programming/"
+          },
+          "tags": ["binary-search", "brute-force", "data-structures", "dp"]
+        }
+      ]
+    },
+    {
+      "title": "Kadane's Algorithm",
+      "slug": "kadanes-algorithm",
+      "difficulty": "Medium",
+      "description": "Maximum subarray problems solved in a single pass.",
+      "resources": {
+        "youtube": "https://www.youtube.com/watch?v=AHZpyENo7k4",
+        "practice": {
+          "platform": "LeetCode",
+          "url": "https://leetcode.com/problem-list/dynamic-programming/"
+        },
+        "article": "https://www.geeksforgeeks.org/dsa/largest-sum-contiguous-subarray/"
+      },
+      "problems": [
+        {
+          "title": "Best Time to Buy and Sell Stock",
+          "slug": "best-time-to-buy-and-sell-stock",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=excAOvwF_Wk",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/121/"
+          },
+          "tags": ["array", "dynamic-programming"]
+        },
+        {
+          "title": "Maximum Subarray",
+          "slug": "maximum-subarray",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=AHZpyENo7k4",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/maximum-subarray/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/53/"
+          },
+          "tags": ["array", "divide-and-conquer", "dynamic-programming"]
+        },
+        {
+          "title": "Maximum Product Subarray",
+          "slug": "maximum-product-subarray",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=hnswaLJvr6g",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/maximum-product-subarray/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/152/"
+          },
+          "tags": ["array", "dynamic-programming"]
+        },
+        {
+          "title": "Maximum Sum Circular Subarray",
+          "slug": "maximum-sum-circular-subarray",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=fxT9KjakYPM",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/maximum-sum-circular-subarray/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/918/"
+          },
+          "tags": ["array", "divide-and-conquer", "dynamic-programming", "queue"]
+        }
+      ]
+    },
+    {
+      "title": "Matrix Problems",
+      "slug": "matrix-problems",
+      "difficulty": "Medium",
+      "description": "2D traversal patterns: layers, spirals and in-place transforms.",
+      "resources": {
+        "youtube": "https://www.youtube.com/watch?v=N0MgLvceX7M",
+        "practice": {
+          "platform": "LeetCode",
+          "url": "https://leetcode.com/problem-list/matrix/"
+        },
+        "article": "https://www.geeksforgeeks.org/dsa/matrix/"
+      },
+      "problems": [
+        {
+          "title": "Pascal's Triangle",
+          "slug": "pascals-triangle",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=bR7mQgwQ_o8",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/pascals-triangle/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/118/"
+          },
+          "tags": ["array", "dynamic-programming"]
+        },
+        {
+          "title": "Set Matrix Zeroes",
+          "slug": "set-matrix-zeroes",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=N0MgLvceX7M",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/set-matrix-zeroes/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/73/"
+          },
+          "tags": ["array", "hash-table", "matrix"]
+        },
+        {
+          "title": "Rotate Image",
+          "slug": "rotate-image",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=Z0R2u6gd3GU",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/rotate-image/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/48/"
+          },
+          "tags": ["array", "math", "matrix"]
+        },
+        {
+          "title": "Spiral Matrix",
+          "slug": "spiral-matrix",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=3Zv-s9UUrFM",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/spiral-matrix/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/54/"
+          },
+          "tags": ["array", "matrix", "simulation"]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,358 @@
+{
+  "title": "Dynamic Programming",
+  "slug": "dynamic-programming",
+  "order": 12,
+  "description": "Overlapping subproblems — memoization, tabulation and space optimization.",
+  "icon": "grid-3x3",
+  "topics": [
+    {
+      "title": "1D Dynamic Programming",
+      "slug": "dp-1d",
+      "difficulty": "Easy",
+      "description": "Linear recurrences — stairs, robbers and decodings.",
+      "resources": {
+        "youtube": "https://www.youtube.com/watch?v=tyB0ztf0DNY",
+        "practice": {
+          "platform": "LeetCode",
+          "url": "https://leetcode.com/problem-list/dynamic-programming/"
+        },
+        "article": "https://www.geeksforgeeks.org/dsa/introduction-to-dynamic-programming-data-structures-and-algorithm-tutorials/"
+      },
+      "problems": [
+        {
+          "title": "Climbing Stairs",
+          "slug": "climbing-stairs",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=mLfjzJsN8us",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/climbing-stairs/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/70/"
+          },
+          "tags": ["math", "dynamic-programming", "memoization"]
+        },
+        {
+          "title": "Min Cost Climbing Stairs",
+          "slug": "min-cost-climbing-stairs",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=ktmzAZWkEZ0",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/min-cost-climbing-stairs/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/746/"
+          },
+          "tags": ["array", "dynamic-programming"]
+        },
+        {
+          "title": "House Robber",
+          "slug": "house-robber",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=GrMBfJNk_NY",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/house-robber/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/198/"
+          },
+          "tags": ["array", "dynamic-programming"]
+        },
+        {
+          "title": "House Robber II",
+          "slug": "house-robber-ii",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=3WaxQMELSkw",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/house-robber-ii/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/213/"
+          },
+          "tags": ["array", "dynamic-programming"]
+        },
+        {
+          "title": "Cut Ribbon (CF 189A)",
+          "slug": "cf-189a-cut-ribbon",
+          "difficulty": "Easy",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=AEu3qEYi4vc",
+            "practice": {
+              "platform": "Codeforces",
+              "url": "https://codeforces.com/problemset/problem/189/A"
+            },
+            "article": "https://www.geeksforgeeks.org/dsa/maximize-the-number-of-segments-of-length-p-q-and-r/"
+          },
+          "tags": ["brute-force", "dp"]
+        },
+        {
+          "title": "Decode Ways",
+          "slug": "decode-ways",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=6aEyTjOwlJU",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/decode-ways/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/91/"
+          },
+          "tags": ["string", "dynamic-programming"]
+        }
+      ]
+    },
+    {
+      "title": "Grid DP",
+      "slug": "dp-grid",
+      "difficulty": "Medium",
+      "description": "Paths and costs on 2D grids.",
+      "resources": {
+        "youtube": "https://www.youtube.com/watch?v=sdE0A2Oxofw",
+        "practice": {
+          "platform": "LeetCode",
+          "url": "https://leetcode.com/problem-list/dynamic-programming/"
+        },
+        "article": "https://www.geeksforgeeks.org/dsa/unique-paths-in-a-grid-with-obstacles/"
+      },
+      "problems": [
+        {
+          "title": "Unique Paths",
+          "slug": "unique-paths",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=sdE0A2Oxofw",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/unique-paths/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/62/"
+          },
+          "tags": ["math", "dynamic-programming", "combinatorics"]
+        },
+        {
+          "title": "Unique Paths II",
+          "slug": "unique-paths-ii",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=TmhpgXScLyY",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/unique-paths-ii/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/63/"
+          },
+          "tags": ["array", "dynamic-programming", "matrix"]
+        },
+        {
+          "title": "Minimum Path Sum",
+          "slug": "minimum-path-sum",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=_rgTlyky1uQ",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/minimum-path-sum/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/64/"
+          },
+          "tags": ["array", "dynamic-programming", "matrix"]
+        },
+        {
+          "title": "Triangle",
+          "slug": "triangle",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=SrP-PiLSYC0",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/triangle/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/120/"
+          },
+          "tags": ["array", "dynamic-programming"]
+        }
+      ]
+    },
+    {
+      "title": "Knapsack & Subsequences",
+      "slug": "dp-knapsack",
+      "difficulty": "Medium",
+      "description": "0/1 and unbounded knapsack, subset sums and LIS.",
+      "resources": {
+        "youtube": "https://www.youtube.com/watch?v=nLmhmB6NzcM",
+        "practice": {
+          "platform": "LeetCode",
+          "url": "https://leetcode.com/problem-list/dynamic-programming/"
+        },
+        "article": "https://www.geeksforgeeks.org/dsa/0-1-knapsack-problem-dp-10/"
+      },
+      "problems": [
+        {
+          "title": "Coin Change",
+          "slug": "coin-change",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=H9bfqozjoqs",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/coin-change/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/322/"
+          },
+          "tags": ["array", "dynamic-programming", "breadth-first-search", "knapsack-problem"]
+        },
+        {
+          "title": "Coin Change II",
+          "slug": "coin-change-ii",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=HgyouUi11zk",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/coin-change-ii/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/518/"
+          },
+          "tags": ["array", "dynamic-programming", "knapsack-problem", "complete-knapsack"]
+        },
+        {
+          "title": "Partition Equal Subset Sum",
+          "slug": "partition-equal-subset-sum",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=7win3dcgo3k",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/partition-equal-subset-sum/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/416/"
+          },
+          "tags": ["array", "dynamic-programming", "knapsack-problem", "0-1-knapsack"]
+        },
+        {
+          "title": "Target Sum",
+          "slug": "target-sum",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=b3GD8263-PQ",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/target-sum/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/494/"
+          },
+          "tags": ["array", "dynamic-programming", "backtracking", "knapsack-problem"]
+        },
+        {
+          "title": "Longest Increasing Subsequence",
+          "slug": "longest-increasing-subsequence",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=ekcwMsSIzVc",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/longest-increasing-subsequence/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/300/"
+          },
+          "tags": [
+            "array",
+            "binary-search",
+            "dynamic-programming",
+            "longest-increasing-subsequence"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "DP on Strings & Intervals",
+      "slug": "dp-strings",
+      "difficulty": "Hard",
+      "description": "LCS, edit distance and interval DP.",
+      "resources": {
+        "youtube": "https://www.youtube.com/watch?v=aJNu_DLyOxY",
+        "practice": {
+          "platform": "LeetCode",
+          "url": "https://leetcode.com/problem-list/dynamic-programming/"
+        },
+        "article": "https://www.geeksforgeeks.org/dsa/longest-common-subsequence-dp-4/"
+      },
+      "problems": [
+        {
+          "title": "Longest Common Subsequence",
+          "slug": "longest-common-subsequence",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=NPZn9jBrX8U",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/longest-common-subsequence/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/1143/"
+          },
+          "tags": ["string", "dynamic-programming", "longest-common-subsequence"]
+        },
+        {
+          "title": "Word Break",
+          "slug": "word-break",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=Sx9NNgInc3A",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/word-break/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/139/"
+          },
+          "tags": ["array", "hash-table", "string", "dynamic-programming"]
+        },
+        {
+          "title": "Edit Distance",
+          "slug": "edit-distance",
+          "difficulty": "Medium",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=fJaKO8FbDdo",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/edit-distance/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/72/"
+          },
+          "tags": ["string", "dynamic-programming"]
+        },
+        {
+          "title": "Distinct Subsequences",
+          "slug": "distinct-subsequences",
+          "difficulty": "Hard",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=nVG7eTiD2bY",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/distinct-subsequences/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/115/"
+          },
+          "tags": ["string", "dynamic-programming"]
+        },
+        {
+          "title": "Burst Balloons",
+          "slug": "burst-balloons",
+          "difficulty": "Hard",
+          "resources": {
+            "youtube": "https://www.youtube.com/watch?v=Yz4LlDSlkns",
+            "practice": {
+              "platform": "LeetCode",
+              "url": "https://leetcode.com/problems/burst-balloons/"
+            },
+            "article": "https://doocs.github.io/leetcode/en/lc/312/"
+          },
+          "tags": ["array", "dynamic-programming"]
+        }
+      ]
+    }
+  ]
+}

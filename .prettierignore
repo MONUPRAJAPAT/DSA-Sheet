@@ -1,0 +1,7 @@
+**/dist
+**/node_modules
+package-lock.json
+server/scripts/.content-cache.json
+server/scripts/content-report.md
+playwright-report
+test-results
