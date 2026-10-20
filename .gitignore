@@ -10,3 +10,4 @@ playwright-report
 test-results
 *.pdf
 server/scripts/.content-cache.json
+!docs/pdf/*.pdf
